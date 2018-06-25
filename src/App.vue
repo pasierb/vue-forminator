@@ -1,17 +1,81 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Forminator :schema="formSchema" :model="model" @change="onChange" />
+    <pre>{{model}}</pre>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Forminator from './Forminator';
 
 export default {
   name: 'app',
+  data() {
+    return {
+      model: {
+        firstName: '',
+        lastName: '',
+        sex: 'female',
+        accepted: true,
+        rsvp: 'no',
+        interests: ['vball']
+      }
+    }
+  },
   components: {
-    HelloWorld
+    Forminator
+  },
+  methods: {
+    onChange(e, data) {
+      console.log(e, data);
+    }
+  },
+  computed: {
+    formSchema: () => [
+      { label: 'First name', name: 'firstName' },
+      { name: 'lastName' },
+      {
+        name: 'rsvp',
+        as: 'radio',
+        options: [
+          { label: 'Going', value: 'yes' },
+          { label: 'Not going', value: 'no' },
+        ]
+      },
+      {
+        name: 'interests',
+        as: 'checkbox',
+        options: [
+          { label: 'Basketball', value: 'bball' },
+          { label: 'Volleyball', value: 'vball' },
+          { label: 'Soccer', value: 'football' },
+        ]
+      },
+      {
+        name: 'rsvp',
+        as: 'radio',
+        options: [
+          { label: 'Maybe', value: 'maybe' },
+        ]
+      },
+      {
+        name: 'sex',
+        as: 'select',
+        options: [
+          { value: 'male', label: 'Gentleman' },
+          { value: 'female', label: 'Lady' }
+        ]
+      },
+      {
+        name: 'interests',
+        as: 'checkbox',
+        options: [
+          { label: 'Bowling', value: 'bowling' },
+          { label: 'Darts', value: 'darts' }
+        ]
+      },
+      { name: 'accepted', as: 'checkbox', label: 'Accepted terms' }
+    ]
   }
 }
 </script>
