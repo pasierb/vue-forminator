@@ -1,6 +1,6 @@
 export default {
     functional: true,
-    render: (h, { slots }) => {
-        return h('label', {}, slots().default)
+    render: (h, { slots, props  }) => {
+        return h('label', { props }, slots().default)
     }
 }

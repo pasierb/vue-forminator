@@ -4,7 +4,7 @@ import Select from './Select';
 import Checkbox from './Checkbox';
 import Radio from './Radio';
 
-const FIELD = {
+export const renderer = {
     text: (h, { props, listeners }) => {
         return [
             h(Label, [props.label]),
@@ -22,11 +22,9 @@ const FIELD = {
             return props.options.map(option => {
                 return h(Label, [
                     h(Checkbox, {
-                        props: {
-                            name: props.name,
+                        props: Object.assign({}, props, {
                             value: option.value,
-                            model: props.model,
-                        },
+                        }),
                         on: listeners
                     }),
                     option.label
@@ -42,18 +40,16 @@ const FIELD = {
         }
     },
     radio: (h, { props, listeners }) => {
-        return props.options.map(({ label, value }) => {
+        return props.options.map(opt => {
             return h(Label, [
                 h(Radio, {
-                    props: {
+                    props: Object.assign({}, props, opt, {
                         name: props.name,
                         model: props.model,
-                        label,
-                        value
-                    },
+                    }),
                     on: listeners
                 }),
-                label
+                opt.label
             ])
         })
     }
@@ -67,8 +63,13 @@ export default {
         as: { type: String, default: 'text' },
         options: { type: Array, default: () => [] },
         model: { type: Object, required: true },
+        config: { type: Object, default: () => ({}) }
     },
     render: (h, ctx) => {
-        return h('div', {}, FIELD[ctx.props.as](h, ctx));
+        return h('div', {
+            attrs: {
+                class: ctx.props.config.fieldWrapperClass
+            }
+        }, renderer[ctx.props.as](h, ctx));
     }
 }

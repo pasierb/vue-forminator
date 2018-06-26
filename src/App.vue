@@ -1,12 +1,17 @@
 <template>
   <div id="app">
     <Forminator :schema="formSchema" :model="model" @change="onChange" />
+
     <pre>{{model}}</pre>
+
+    <button @click="model.accepted = !model.accepted">Toggle</button>
   </div>
 </template>
 
 <script>
 import Forminator from './Forminator';
+
+Forminator.config.wrapperClass = 'blah';
 
 export default {
   name: 'app',
@@ -25,6 +30,9 @@ export default {
   components: {
     Forminator
   },
+  mounted() {
+    console.log(Forminator);
+  },
   methods: {
     onChange(e, data) {
       console.log(e, data);
@@ -32,14 +40,16 @@ export default {
   },
   computed: {
     formSchema: () => [
-      { label: 'First name', name: 'firstName' },
-      { name: 'lastName' },
+      [
+        { label: 'First name', name: 'firstName' },
+        { name: 'lastName' },
+      ],
       {
         name: 'rsvp',
         as: 'radio',
         options: [
           { label: 'Going', value: 'yes' },
-          { label: 'Not going', value: 'no' },
+          { label: 'Not going', value: 'no', disabled: 'disabled' },
         ]
       },
       {
@@ -63,7 +73,8 @@ export default {
         as: 'select',
         options: [
           { value: 'male', label: 'Gentleman' },
-          { value: 'female', label: 'Lady' }
+          { value: 'female', label: 'Lady' },
+          { label: 'Undicided', disabled: 'disabled' },
         ]
       },
       {

@@ -1,6 +1,6 @@
 export default {
     functional: true,
-    render: (h, { props, listeners }) => {
+    render: (h, { props, listeners = {} }) => {
         const { model, name, value } = props;
         const isArray = Array.isArray(model[name]);
         const checked = isArray ? model[name].indexOf(value) !== -1 : model[name];
@@ -23,9 +23,9 @@ export default {
                 name: props.name,
                 checked
             },
-            on: {
+            on: Object.assign({}, listeners, {
                 change: onChange
-            }
+            })
         });
     }
 }

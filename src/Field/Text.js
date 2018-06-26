@@ -9,12 +9,13 @@ export default {
         return h('input', {
             attrs: {
                 type: 'text',
-                name: props.name
+                name: props.name,
+                class: props.config.inputClass
             },
-            on: {
+            on: Object.assign({}, listeners, {
                 input: onChange,
                 blur: onChange
-            }
+            })
         });
     }
 }

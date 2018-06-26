@@ -1,3 +1,5 @@
+// TODO: optgroup
+
 export default {
     functional: true,
     render: (h, { props, listeners = {} }) => {
