@@ -1,10 +1,13 @@
 export default {
     functional: true,
-    render: (h, { props, listeners = {} }) => {
-        const checked = props.model[props.name] === props.value;
+    render: (h, ctx) => {
+        const { props, listeners = {} } = ctx;
+        const { config, model, field } = props;
+        const checked = model[field.name] === field.value;
         const onChange = (e) => {
-            props.model[props.name] = e.target.checked && props.value;
+            model[field.name] = e.target.checked && props.value;
             listeners.change && listeners.change(e, props);
+            config.onChange && config.onChange(e, props);
         };
 
         return h('input', {

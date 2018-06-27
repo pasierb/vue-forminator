@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <Forminator :schema="formSchema" :model="model" @change="onChange" />
+    <Forminator :schema="formSchema" :model="model" @change="onChange" :validations="validations" />
 
     <pre>{{model}}</pre>
+
+    <!-- <Forminator :schema="formSchema" :model="model" @change="onChange" :config="customConfig" /> -->
 
     <button @click="model.accepted = !model.accepted">Toggle</button>
   </div>
@@ -10,8 +12,6 @@
 
 <script>
 import Forminator from './Forminator';
-
-Forminator.config.wrapperClass = 'blah';
 
 export default {
   name: 'app',
@@ -24,14 +24,14 @@ export default {
         accepted: true,
         rsvp: 'no',
         interests: ['vball']
+      },
+      validations: {
+        firstName: false,
       }
     }
   },
   components: {
     Forminator
-  },
-  mounted() {
-    console.log(Forminator);
   },
   methods: {
     onChange(e, data) {
@@ -42,7 +42,7 @@ export default {
     formSchema: () => [
       [
         { label: 'First name', name: 'firstName' },
-        { name: 'lastName' },
+        { label: 'Last name', name: 'lastName' },
       ],
       {
         name: 'rsvp',
@@ -70,6 +70,7 @@ export default {
       },
       {
         name: 'sex',
+        // label: 'Gender',
         as: 'select',
         options: [
           { value: 'male', label: 'Gentleman' },
@@ -85,19 +86,8 @@ export default {
           { label: 'Darts', value: 'darts' }
         ]
       },
-      { name: 'accepted', as: 'checkbox', label: 'Accepted terms' }
+      { name: 'accepted', as: 'boolean', label: 'Accepted terms' }
     ]
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
