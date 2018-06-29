@@ -1,4 +1,8 @@
 import { mergeData } from 'vue-functional-data-merge';
+import { omit } from 'ramda';
+import Base from './BaseInput';
+
+const optionAttrs = omit(['label']);
 
 const createOptionGroup = (h, option, selected) => {
     return h('optgroup', {
@@ -12,14 +16,14 @@ const createOptionGroup = (h, option, selected) => {
 
 const createOption = (h, option, selected) => {
     return h('option', {
-        attrs: Object.assign({}, option, {
-            value: option.value,
+        attrs: optionAttrs(option),
+        domProps: {
             selected: option.value === selected
-        })
+        }
     }, option.label)
 };
 
-export default {
+const Select = {
     functional: true,
     render: (h, ctx) => {
         const { props, listeners = {} } = ctx;
@@ -43,4 +47,6 @@ export default {
             return (Array.isArray(option.values) ? createOptionGroup : createOption)(h, option, selected);
         }));
     }
-}
+};
+
+export default Base(Select);

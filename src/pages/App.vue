@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Forminator :schema="formSchema" :model="model" @change="onChange" :validations="validations" />
+    <Forminator :schema="formSchema" :model="model" :validations="validations" />
 
     <pre>{{model}}</pre>
 
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Forminator from './Forminator';
+import Forminator from '../Forminator';
 
 export default {
   name: 'app',
@@ -32,11 +32,6 @@ export default {
   },
   components: {
     Forminator
-  },
-  methods: {
-    onChange(e, data) {
-      console.log(e, data);
-    }
   },
   computed: {
     formSchema: () => [

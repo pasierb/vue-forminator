@@ -1,23 +1,25 @@
 <template>
-<form class="e-form" @submit.prevent="onSubmit">
-    <Forminator :schema="contactUsSchema" :model="form" :validations="$v.form" />
+    <form @submit.prevent="onSubmit">
+        <Forminator :schema="contactUsSchema" :model="form" />
 
-    <div>
-        <button type="submit" class="e-btn--highlight" :disabled="$v.$invalid">Submit</button>
-    </div>
-</form>
+        <div class="field">
+            <div class="control">
+                <button type="submit" class="button is-link">Submit</button>
+            </div>
+        </div>
+    </form>
 </template>
 
 <script>
 import Forminator from '../Forminator';
-import efGenrator from '../generators/ef';
-import { required, email } from 'vuelidate/lib/validators';
+import bulmaGenerator from '../generators/bulma';
+// import { required, email } from 'vuelidate/lib/validators';
 
-Forminator.generator = efGenrator;
+Forminator.generator = bulmaGenerator;
 
 const contactUsSchema = [
     [
-        { name: 'firstName', label: 'First name', required: true },
+        { name: 'firstName', label: 'First name' },
         { name: 'email', label: 'Email address', as: 'email' },
     ],
     { name: 'phone', label: 'Phone number' },
@@ -79,14 +81,6 @@ export default {
                 acceptedTerms: null,
                 sports: [],
             }
-        }
-    },
-    validations: {
-        form: {
-            firstName: { required },
-            lastName: { required },
-            email: { email, required },
-            acceptedTerms: { required }
         }
     },
     methods: {

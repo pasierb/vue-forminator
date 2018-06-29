@@ -1,13 +1,17 @@
+import defaultGenerator from './default';
 import { mergeData } from 'vue-functional-data-merge'
 import {
     Text,
+    Email,
     Checkbox,
-    Label,
     Select,
-    Textarea
-} from '../components';
+    Textarea,
+} from '../components/inputs';
+import Label from '../components/Label';
+import CheckboxGroup from '../components/CheckboxGroup';
+import BaseInput from '../components/inputs/BaseInput';
 
-const EfCheckbox = {
+const EfCheckbox = BaseInput({
     functional: true,
     render: (h, ctx) => {
         const { props } = ctx;
@@ -24,7 +28,7 @@ const EfCheckbox = {
             })
         ])
     }
-};
+});
 
 const LabelPrepend = (component) => ({
     functional: true,
@@ -36,58 +40,41 @@ const LabelPrepend = (component) => ({
     }
 });
 
-const Field = {
-    functional: true,        
+const DateInputs = {
+    functional: true,
     render: (h, ctx) => {
-        return h('div', mergeData(ctx.data, {
-            class: 'e-form-group'
-        }), ctx.slots().default);
-    }
-};
+        const inputWrap = (child) => h('div', { attrs: { class: 'e-form-group' }}, [child])
 
-const config = {
-    labelClass: 'e-form-control-label',
-    inputClass: 'e-form-control',
-    selectClass: 'e-form-control',
-    rowClass: 'e-row',
-    columnClass: 'e-col',
-    errorClass: '-has-error',
-    onChange: (e, { validations, field }) => {
-        const v = validations[field.name];
-
-        v && v.$touch();
-    }
-};
-
-const fields = {
-    boolean: EfCheckbox,
-    text: LabelPrepend(Text),
-    select: LabelPrepend(Select),
-    textarea: LabelPrepend(Textarea)
-};
-
-const generator = {
-    config,
-    createField: (h, ctx, item) => {
-        const { props } = ctx;
-        const validations = props.validations[item.name];
-        const required = validations && validations.$params.required;
-        const invalid = validations && validations.$dirty && validations.$invalid;
-        const as = item.as || 'text';
-
-        return h(Field, mergeData(ctx.data, {
-            class: invalid && config.errorClass
-        }), [
-            h(fields[as], {
-                props: Object.assign({}, props, {
-                    placeholder: item.label,
-                    as,
-                    config,
-                    field: Object.assign(item, { required })
-                })
-            })
+        return h('div', {
+            attrs: { class: 'e-date__inputs' }
+        }, [
+            inputWrap(h(Text, ctx)),
+            inputWrap(h(Text, ctx)),
+            inputWrap(h(Text, ctx)),
         ]);
     }
-};
+}
+
+const generator = defaultGenerator.extend({
+    inputs: {
+        boolean: EfCheckbox,
+        text: LabelPrepend(Text),
+        select: LabelPrepend(Select),
+        textarea: LabelPrepend(Textarea),
+        dateInputs: LabelPrepend(DateInputs),
+        email: LabelPrepend(Email),
+        checkbox: LabelPrepend(EfCheckbox),
+        checkboxGroup: LabelPrepend(CheckboxGroup(EfCheckbox))
+    },
+    config: {
+        labelClass: 'e-form-control-label',
+        inputClass: 'e-form-control',
+        selectClass: 'e-form-control',
+        fieldClass: 'e-form-group',
+        rowClass: 'e-row',
+        columnClass: 'e-col',
+        errorClass: '-has-error',
+    },
+});
 
 export default generator;

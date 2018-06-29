@@ -1,5 +1,9 @@
 export default {
     functional: true,
+    props: {
+        config: { type: Object, required: true },
+        field: { type: Object, required: true },
+    },
     render(h, ctx) {
         const { props, data } = ctx;
         const { field, config } = props;
@@ -13,7 +17,7 @@ export default {
 
         return h('label', Object.assign({}, ctx, {
             attrs: {
-                class: [className || config.labelClass, attrs.class].join(' ')
+                class: [className || config.labelClass, attrs.class].join(' '),
             },
         }), [
             field.required && prependRequired && '* ',
