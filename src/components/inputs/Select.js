@@ -25,20 +25,15 @@ const createOption = (h, option, selected) => {
 
 const Select = {
     functional: true,
-    render: (h, ctx) => {
-        const { props, listeners = {} } = ctx;
+    render: (h, { props, data }) => {
         const { field, model, config } = props;
         const selected = model[field.name];
-        const onChange = (e) => {
-            model[field.name] = e.target.value;
-            listeners.change && listeners.change(e, props);
-            config.onChange && config.onChange(e, props);
-        };
+        const onChange = (e) => model[field.name] = e.target.value;
 
-        return h('select', mergeData(ctx, {
+        return h('select', mergeData(data, {
+            class: config.selectClass,
             attrs: {
                 name: field.name,
-                class: config.selectClass
             },
             on: {
                 change: onChange

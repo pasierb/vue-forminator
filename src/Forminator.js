@@ -1,7 +1,11 @@
 import defaultGenrator from './generators/default';
-import Field from './components/Field';
+import FieldWrapper from './components/Field';
+import FieldsRow from './components/FieldsRow';
 
-const Forminator = {
+export const Provider = ({
+    Field = FieldWrapper,
+    generator = defaultGenrator
+} = {}) => ({
     props: {
         schema: { type: Array, required: true },
         model: { type: Object, required: true },
@@ -9,20 +13,23 @@ const Forminator = {
         validations: { type: Object, default: () => ({}) }
     },
     render(h) {
-        const { generator } = Forminator;
-        const { model, config, schema } = this; //ctx.props;
+        const { model, config, schema, validations } = this;
         const localConfig = Object.assign({}, generator.config, config);
 
         return h('div', {
             attrs: { class: config.wrapperClass }
-        }, schema.map(field =>
-            h(Field, {
-                props: { field, model, generator, config: localConfig }
+        }, schema.map(field => {
+            if (!Array.isArray(field)) {
+                return h(Field, {
+                    props: { field, model, config: localConfig, generator, validations }
+                });
+            }
+
+            return h(FieldsRow(Field), {
+                props: { fields: field, model, config: localConfig, generator, validations }
             })
-        ));
+        }));
     }
-};
+});
 
-Forminator.generator = defaultGenrator;
-
-export default Forminator;
+export default Provider();

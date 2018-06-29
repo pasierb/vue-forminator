@@ -1,4 +1,5 @@
 import { omit } from 'ramda';
+import { mergeData } from 'vue-functional-data-merge';
 import Base from '../inputs/BaseInput';
 
 const fieldAttrs = omit(['as', 'label']);
@@ -12,14 +13,14 @@ const Textarea =  {
             data.on && data.on.change && data.on.change(e, props);
         }
 
-        return h('textarea', {
+        return h('textarea', mergeData(data, {
             class: config.textareaClass || config.inputClass,
             attrs: fieldAttrs(field),
-            on: Object.assign({}, data.on || {}, {
+            on: {
                 input: onChange,
                 blur: onChange
-            })
-        });
+            }
+        }));
     }
 }
 

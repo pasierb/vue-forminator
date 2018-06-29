@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import Forminator from '../Forminator';
+import { Provider} from '../Forminator';
 import bulmaGenerator from '../generators/bulma';
 // import { required, email } from 'vuelidate/lib/validators';
 
-Forminator.generator = bulmaGenerator;
+const Forminator = Provider({ generator: bulmaGenerator });
 
 const contactUsSchema = [
     [

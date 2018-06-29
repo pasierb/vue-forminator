@@ -4,6 +4,7 @@ import Checkbox from './Checkbox';
 import Radio from './Radio';
 import Text from './Text';
 import Email from './Email';
+import NumberInput from './NumberInput';
 
 export {
     Text,
@@ -11,7 +12,8 @@ export {
     Textarea,
     Select,
     Checkbox,
-    Radio
+    Radio,
+    NumberInput
 };
 
 // export const createCheckboxGroup = (h, { props, listeners }) => {

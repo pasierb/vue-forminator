@@ -3,14 +3,8 @@ import Row from './Row';
 
 const FieldsRow = (Field) => ({
     functional: true,
-    props: {
-        fields: { type: Array, required: true },
-        config: { type: Object, required: true },
-        model: { type: Object, required: true },
-        generator: { type: Object, required: true }
-    },
     render: (h, ctx) => {
-        const { fields, generator, config, model } = ctx.props;
+        const { fields, config } = ctx.props;
 
         return h(Row, {
             props: { config }
@@ -19,7 +13,7 @@ const FieldsRow = (Field) => ({
                 props: { config }
             }, [
                 h(Field, {
-                    props: { field, model, generator, config }
+                    props: { field, ...ctx.props }
                 })
             ])
         ));

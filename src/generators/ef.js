@@ -6,6 +6,7 @@ import {
     Checkbox,
     Select,
     Textarea,
+    NumberInput,
 } from '../components/inputs';
 import Label from '../components/Label';
 import CheckboxGroup from '../components/CheckboxGroup';
@@ -13,16 +14,15 @@ import BaseInput from '../components/inputs/BaseInput';
 
 const EfCheckbox = BaseInput({
     functional: true,
-    render: (h, ctx) => {
-        const { props } = ctx;
+    render: (h, { props, data }) => {
 
-        return h(Label, mergeData(ctx, {
-            attrs: { class: 'e-check e-check--box' },
+        return h(Label, mergeData(data, {
+            class: 'e-check e-check--box',
         }), [
             h('span', {
                 domProps: { innerHTML: props.field.label }
             }),
-            h(Checkbox, ctx),
+            h(Checkbox, data),
             h('div', {
                 attrs: { class: 'e-check__indicator' }
             })
@@ -32,15 +32,15 @@ const EfCheckbox = BaseInput({
 
 const LabelPrepend = (component) => ({
     functional: true,
-    render: (h, ctx) => {
+    render: (h, { data, props }) => {
         return [
-            h(Label, ctx, ctx.props.field.label),
-            h(component, ctx)
+            h(Label, data, props.field.label),
+            h(component, data)
         ]
     }
 });
 
-const DateInputs = {
+const DateInputs = (input = Text) => ({
     functional: true,
     render: (h, ctx) => {
         const inputWrap = (child) => h('div', { attrs: { class: 'e-form-group' }}, [child])
@@ -48,12 +48,12 @@ const DateInputs = {
         return h('div', {
             attrs: { class: 'e-date__inputs' }
         }, [
-            inputWrap(h(Text, ctx)),
-            inputWrap(h(Text, ctx)),
-            inputWrap(h(Text, ctx)),
+            inputWrap(h(input, ctx)),
+            inputWrap(h(input, ctx)),
+            inputWrap(h(input, ctx)),
         ]);
     }
-}
+})
 
 const generator = defaultGenerator.extend({
     inputs: {
@@ -61,7 +61,7 @@ const generator = defaultGenerator.extend({
         text: LabelPrepend(Text),
         select: LabelPrepend(Select),
         textarea: LabelPrepend(Textarea),
-        dateInputs: LabelPrepend(DateInputs),
+        dateInputs: LabelPrepend(DateInputs(NumberInput)),
         email: LabelPrepend(Email),
         checkbox: LabelPrepend(EfCheckbox),
         checkboxGroup: LabelPrepend(CheckboxGroup(EfCheckbox))

@@ -4,6 +4,7 @@ import {
     Checkbox,
     Select,
     Textarea,
+    NumberInput
 } from '../components/inputs';
 import Label from '../components/Label';
 import CheckboxGroup from '../components/CheckboxGroup';
@@ -33,6 +34,7 @@ const generator = {
     inputs: {
         boolean: Checkbox,
         text: LabelPrepend(Text),
+        number: LabelPrepend(NumberInput),
         select: LabelPrepend(Select),
         textarea: LabelPrepend(Textarea),
         email: LabelPrepend(Email),

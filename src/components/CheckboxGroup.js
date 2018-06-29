@@ -5,8 +5,7 @@ const CheckboxGroup = (Checkbox) => ({
     props: {
         field: { type: Object, required: true }
     },
-    render: (h, ctx) => {
-        const { props, data } = ctx;
+    render: (h, { props, data }) => {
         const { field } = props;
 
         return h('div', {}, field.options.map(option => {

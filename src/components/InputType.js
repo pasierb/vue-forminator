@@ -1,33 +1,24 @@
-import { omit } from 'ramda';
+import { mergeData } from 'vue-functional-data-merge';
+// import { omit } from 'ramda';
 
-const fieldAttrs = omit(['label', 'as']);
+// const fieldAttrs = omit(['label', 'as']);
 
 export default (type) => ({
     functional: true,
-    props: {
-        model: { type: Object, required: true },
-        field: { type: Object, required: true },
-        config: { type: Object, required: true },
-    },
-    render(h, ctx) {
-        const { props, data } = ctx;
+    render(h, { props, data }) {
         const { model, field, config } = props;
         const cssClass = config[`${type}InputClass`] || config.inputClass;
-        const onChange = (e) => {
-            model[field.name] = e.target.value;
+        const onChange = (e) => model[field.name] = e.target.value;
 
-            data.on && data.on.change && data.on.change(e, props);
-        }
-
-        return h('input', {
+        return h('input', mergeData(data, {
             class: cssClass,
-            attrs: Object.assign(fieldAttrs(field), {
+            attrs: {
                 type,
-            }),
-            on: Object.assign({}, data.on || {}, {
+            },
+            on: {
                 input: onChange,
                 blur: onChange
-            })
-        });
+            }
+        }));
     }
 });

@@ -1,16 +1,5 @@
+import { mergeData } from 'vue-functional-data-merge';
 import BaseInput from './BaseInput';
-
-const createCheckbox = (h, { name, value }, checked, listeners) => {
-    return h('input', {
-        attrs: {
-            type: 'checkbox',
-            name,
-            value
-        },
-        domProps: { checked },
-        on: listeners
-    });
-};
 
 const Checkbox = {
     functional: true,
@@ -27,12 +16,19 @@ const Checkbox = {
             } else {
                 model[field.name] = !!e.target.checked || null;
             }
-
-            data.on && data.on.change && data.on.change(e, props);
         }
-        const listeners = Object.assign({}, data.on || {}, { change: onChange });
 
-        return createCheckbox(h, field, checked, listeners);
+        return h('input', mergeData(data, {
+            attrs: {
+                type: 'checkbox',
+                name: field.name,
+                value: field.value
+            },
+            domProps: { checked },
+            on: {
+                change: onChange
+            }
+        }));
     }
 };
 

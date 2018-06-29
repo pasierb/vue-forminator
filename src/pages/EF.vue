@@ -1,25 +1,56 @@
 <template>
-<form class="e-form" @submit.prevent="onSubmit">
-    <Forminator :schema="contactUsSchema" :model="form" :validations="$v.form" />
+<div>
+    <form class="e-form" @submit.prevent="onSubmit">
+        <Forminator :schema="contactUsSchema" :model="form" :validations="$v.form" />
 
-    <div>
-        <button type="submit" class="e-btn--highlight" :disabled="$v.$invalid">Submit</button>
-    </div>
-</form>
+        <div>
+            <button type="submit" class="e-btn--highlight" :disabled="$v.$invalid">Submit</button>
+        </div>
+    </form>
+</div>
 </template>
 
 <script>
-import Forminator from '../Forminator';
+import { mergeData } from 'vue-functional-data-merge';
+import { Provider } from '../Forminator';
 import efGenrator from '../generators/ef';
 import { required, email } from 'vuelidate/lib/validators';
 
-Forminator.generator = efGenrator;
+const ValidationField = {
+    functional: true,
+    render: (h, { data, props }) => {
+        const { field, generator, config, model, validations } = props;
+        const fieldValidation = validations[field.name];
+        const required = fieldValidation && fieldValidation.$params.required;
+        const touch = () => fieldValidation && fieldValidation.$touch();
+
+        field.required = required;
+
+        return h('div', {
+            class: {
+                [config.fieldClass]: true,
+                '-has-error': fieldValidation && fieldValidation.$dirty && fieldValidation.$invalid
+            }
+        }, [
+            h(generator.inputs[field.as || 'text'], mergeData(data, {
+                props: { field, model, config, generator },
+                on: {
+                    change: touch,
+                    input: touch
+                }
+            }))
+        ]);
+    }
+};
+
+const Forminator = Provider({ generator: efGenrator, Field: ValidationField });
 
 const contactUsSchema = [
     [
-        { name: 'firstName', label: 'First name', required: true },
-        { name: 'email', label: 'Email address', as: 'email' },
+        { name: 'firstName', label: 'First name' },
+        { name: 'lastName', label: 'Last name' },
     ],
+    { name: 'email', label: 'Email address', as: 'email' },
     { name: 'phone', label: 'Phone number' },
     { name: 'birthdate', label: 'Birthday', as: 'dateInputs' },
     { name: 'comments', label: 'Questions and comments', as: 'textarea' },
