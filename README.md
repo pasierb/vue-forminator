@@ -1,5 +1,7 @@
 # vue-forminator
 
+__!!!IMPORTANT!!! work in progress: not production ready__
+
 A schema-based form fields generator component for Vue.js.
 
 ## Features
