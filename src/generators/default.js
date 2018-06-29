@@ -1,3 +1,4 @@
+import {} from 'vue-functional-data-merge';
 import {
     Text,
     Email,
@@ -19,6 +20,16 @@ const LabelPrepend = (component) => ({
     }
 });
 
+const LabelWrap = (Component) => ({
+    functional: true,
+    render(h, { data, props }) {
+        return <Label {...data}>
+            <Component {...data}/>
+            {props.field.label}
+        </Label>
+    }
+})
+
 const generator = {
     extend(params = {}) {
         const { inputs, config, createField, plugins } = this;
@@ -32,14 +43,14 @@ const generator = {
     },
     plugins: [],
     inputs: {
-        boolean: Checkbox,
+        boolean: LabelWrap(Checkbox),
         text: LabelPrepend(Text),
         number: LabelPrepend(NumberInput),
         select: LabelPrepend(Select),
         textarea: LabelPrepend(Textarea),
         email: LabelPrepend(Email),
         checkbox: LabelPrepend(Checkbox),
-        checkboxGroup: LabelPrepend(CheckboxGroup(Checkbox))
+        checkboxGroup: LabelPrepend(CheckboxGroup(LabelWrap(Checkbox)))
     },
     config: {},
 };

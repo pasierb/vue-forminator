@@ -9,8 +9,7 @@ export default (type) => ({
         const { model, field, config } = props;
         const cssClass = config[`${type}InputClass`] || config.inputClass;
         const onChange = (e) => model[field.name] = e.target.value;
-
-        return h('input', mergeData(data, {
+        const componentData = mergeData(data, {
             class: cssClass,
             attrs: {
                 type,
@@ -19,6 +18,8 @@ export default (type) => ({
                 input: onChange,
                 blur: onChange
             }
-        }));
+        });
+
+        return (<input {...componentData} />);
     }
 });

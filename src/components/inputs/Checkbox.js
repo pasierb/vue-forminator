@@ -17,8 +17,7 @@ const Checkbox = {
                 model[field.name] = !!e.target.checked || null;
             }
         }
-
-        return h('input', mergeData(data, {
+        const inputData = mergeData(data, {
             attrs: {
                 type: 'checkbox',
                 name: field.name,
@@ -28,7 +27,9 @@ const Checkbox = {
             on: {
                 change: onChange
             }
-        }));
+        });
+
+        return (<input {...inputData}/>)
     }
 };
 

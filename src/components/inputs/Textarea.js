@@ -8,19 +8,17 @@ const Textarea =  {
     functional: true,
     render(h, { props, data }) {
         const { model, field, config } = props;
-        const onChange = (e) => {
-            model[field.name] = e.target.value;
-            data.on && data.on.change && data.on.change(e, props);
-        }
-
-        return h('textarea', mergeData(data, {
+        const onChange = e => model[field.name] = e.target.value;
+        const inputData = mergeData(data, {
             class: config.textareaClass || config.inputClass,
             attrs: fieldAttrs(field),
             on: {
                 input: onChange,
                 blur: onChange
             }
-        }));
+        })
+
+        return (<textarea {...inputData}></textarea>);
     }
 }
 

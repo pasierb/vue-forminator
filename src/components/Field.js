@@ -1,17 +1,12 @@
-import { mergeData } from 'vue-functional-data-merge';
-
 const Field = {
     functional: true,
     render: (h, { props, data }) => {
-        const { field, generator, config, model } = props;
+        const { field, generator, config } = props;
+        const Input = generator.inputs[field.as || 'text'];
 
-        return h('div', {
-            class: config.fieldClass
-        }, [
-            h(generator.inputs[field.as || 'text'], mergeData(data, {
-                props: { field, model, config, generator },
-            }))
-        ]);
+        return (<div class={config.fieldClass}>
+            <Input {...data} />
+        </div>);
     }
 }
 

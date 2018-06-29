@@ -1,22 +1,23 @@
+import { mergeData } from 'vue-functional-data-merge';
 import Column from './Column';
 import Row from './Row';
 
 const FieldsRow = (Field) => ({
     functional: true,
-    render: (h, ctx) => {
-        const { fields, config } = ctx.props;
+    render: (h, { props, data }) => {
+        const { fields, config } = props;
 
-        return h(Row, {
-            props: { config }
-        }, fields.map(field =>
-            h(Column, {
-                props: { config }
-            }, [
-                h(Field, {
-                    props: { field, ...ctx.props }
-                })
-            ])
-        ));
+        return (<Row config={config}>
+            {fields.map(field => {
+                const fieldData = mergeData(data, {
+                    props: { field }
+                });
+
+                return (<Column config={config}>
+                    <Field {...fieldData} />
+                </Column>);
+            })}
+        </Row>);
     }
 });
 
