@@ -1,4 +1,4 @@
-import defaultGenerator from './default';
+import defaultGenerator from './blank';
 import { mergeData } from 'vue-functional-data-merge'
 import {
     Text,

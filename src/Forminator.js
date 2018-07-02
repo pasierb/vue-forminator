@@ -1,11 +1,11 @@
 import { mergeData } from 'vue-functional-data-merge';
-import defaultGenrator from './generators/default';
+import blank from './generators/blank';
 import FieldWrapper from './components/Field';
 import FieldsRow from './components/FieldsRow';
 
 export const Provider = ({
     Field = FieldWrapper,
-    generator = defaultGenrator
+    generator = blank
 } = {}) => ({
     props: {
         schema: { type: Array, required: true },

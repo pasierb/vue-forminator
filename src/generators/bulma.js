@@ -1,4 +1,4 @@
-import defaultGenerator from './default';
+import defaultGenerator from './blank';
 
 import Label from '../components/Label';
 import {
