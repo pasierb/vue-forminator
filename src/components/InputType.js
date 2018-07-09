@@ -1,5 +1,5 @@
 import { mergeData } from 'vue-functional-data-merge';
-// import { omit } from 'ramda';
+import omit from '../utils/omit';
 
 // const fieldAttrs = omit(['label', 'as']);
 
@@ -8,11 +8,12 @@ export default (type) => ({
     render(h, { props, data }) {
         const { model, field, config } = props;
         const cssClass = config[`${type}InputClass`] || config.inputClass;
-        const onChange = (e) => model[field.name] = e.target.value;
+        const onChange = props.setter || ((e) => model[field.name] = e.target.value);
         const componentData = mergeData(data, {
             class: cssClass,
             attrs: {
                 type,
+                ...omit(['label'], field)
             },
             on: {
                 input: onChange,
@@ -20,6 +21,6 @@ export default (type) => ({
             }
         });
 
-        return (<input {...componentData} />);
+        return h('input', componentData);
     }
 });

@@ -5,7 +5,7 @@ export default [
     ],
     { name: 'email', label: 'Email address', as: 'email' },
     { name: 'phone', label: 'Phone number' },
-    { name: 'birthdate', label: 'Birthday', as: 'dateInputs' },
+    { name: 'birthDate', label: 'Birthday', as: 'date' },
     { name: 'comments', label: 'Questions and comments', as: 'textarea' },
     { name: 'acceptedTerms', as: 'boolean', label: `Yes, I (or my legal guardian) have <strong>read and understood</strong> how EF processes my personal data as set out in the Privacy Policy, and agree to EF's use of my personal data for direct marketing purposes.` },
     {

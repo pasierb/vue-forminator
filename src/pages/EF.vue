@@ -31,13 +31,13 @@ const ValidationField = {
             class: {
                 [config.fieldClass]: true,
                 '-has-error': fieldValidation && fieldValidation.$dirty && fieldValidation.$invalid
-            }
+            },
         }, [
             h(generator.inputs[field.as || 'text'], mergeData(data, {
                 props: { field, model, config, generator },
                 on: {
-                    change: touch,
-                    input: touch
+                    blur: touch,
+                    input: touch,
                 }
             }))
         ]);
@@ -58,6 +58,7 @@ export default {
                 comments: null,
                 acceptedTerms: null,
                 sports: [],
+                birthDate: null
             }
         }
     },
@@ -66,7 +67,8 @@ export default {
             firstName: { required },
             lastName: { required },
             email: { email, required },
-            acceptedTerms: { required }
+            acceptedTerms: { required },
+            birthDate: { required }
         }
     },
     methods: {

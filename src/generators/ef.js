@@ -6,7 +6,6 @@ import {
     Checkbox,
     Select,
     Textarea,
-    NumberInput,
 } from '../components/inputs';
 import Label from '../components/Label';
 import CheckboxGroup from '../components/CheckboxGroup';
@@ -40,28 +39,12 @@ const LabelPrepend = (component) => ({
     }
 });
 
-const DateInputs = (input = Text) => ({
-    functional: true,
-    render: (h, ctx) => {
-        const inputWrap = (child) => h('div', { attrs: { class: 'e-form-group' }}, [child])
-
-        return h('div', {
-            attrs: { class: 'e-date__inputs' }
-        }, [
-            inputWrap(h(input, ctx)),
-            inputWrap(h(input, ctx)),
-            inputWrap(h(input, ctx)),
-        ]);
-    }
-})
-
 const generator = defaultGenerator.extend({
     inputs: {
         boolean: EfCheckbox,
         text: LabelPrepend(Text),
         select: LabelPrepend(Select),
         textarea: LabelPrepend(Textarea),
-        dateInputs: LabelPrepend(DateInputs(NumberInput)),
         email: LabelPrepend(Email),
         checkbox: LabelPrepend(EfCheckbox),
         checkboxGroup: LabelPrepend(CheckboxGroup(EfCheckbox))

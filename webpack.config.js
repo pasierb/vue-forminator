@@ -1,10 +1,14 @@
 const path = require('path');
-const Components = require('./components.json');
 const babelConfig = require('./babel.config');
 
 module.exports = {
     mode: 'production',
-    entry: Components,
+    entry: {
+        'inputs': './src/components/inputs/index.js',
+        'generators/ef': './src/generators/ef.js',
+        'generators/blank': './src/generators/blank.js',
+        'vue-forminator': './src/Forminator.js'
+    },
     output: {
         path: path.resolve(__dirname, 'lib'),
         filename: '[name].js',
@@ -20,9 +24,9 @@ module.exports = {
         ]
     },
     externals: [
-        'vue',
         'vue-functional-data-merge',
-        'ramda'
+        'imask',
+        'moment',
     ],
     module: {
         rules: [

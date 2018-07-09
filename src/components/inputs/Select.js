@@ -1,5 +1,5 @@
 import { mergeData } from 'vue-functional-data-merge';
-import { omit } from 'ramda';
+import omit from '../../utils/omit';
 import Base from './BaseInput';
 
 const optionAttrs = omit(['label']);

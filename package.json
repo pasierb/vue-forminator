@@ -2,7 +2,7 @@
   "name": "vue-forminator",
   "version": "0.1.0",
   "private": false,
-  "main": "./dist/vue-forminator.common.js",
+  "main": "./lib/vue-forminator.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib ./src/Forminator.js && webpack",
@@ -18,8 +18,9 @@
     "*.js"
   ],
   "dependencies": {
-    "ramda": "^0.25.0",
-    "vue": "^2.5.16",
+    "vue": "^2.3",
+    "imask": "^3.4.0",
+    "moment": "2.x",
     "vue-functional-data-merge": "^2.0.6"
   },
   "devDependencies": {

@@ -1,4 +1,4 @@
-import { omit } from 'ramda';
+import omit from '../../utils/omit';
 import { mergeData } from 'vue-functional-data-merge';
 import Base from '../inputs/BaseInput';
 

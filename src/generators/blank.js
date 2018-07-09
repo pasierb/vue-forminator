@@ -1,7 +1,7 @@
-import {} from 'vue-functional-data-merge';
 import {
     Text,
     Email,
+    DateInput,
     Checkbox,
     Select,
     Textarea,
@@ -12,10 +12,10 @@ import CheckboxGroup from '../components/CheckboxGroup';
 
 const LabelPrepend = (component) => ({
     functional: true,
-    render: (h, ctx) => {
+    render: (h, { data, props }) => {
         return [
-            h(Label, ctx, ctx.props.field.label),
-            h(component, ctx)
+            h(Label, data, props.field.label),
+            h(component, data)
         ]
     }
 });
@@ -45,6 +45,7 @@ const generator = {
     inputs: {
         boolean: LabelWrap(Checkbox),
         text: LabelPrepend(Text),
+        date: LabelPrepend(DateInput),
         number: LabelPrepend(NumberInput),
         select: LabelPrepend(Select),
         textarea: LabelPrepend(Textarea),
