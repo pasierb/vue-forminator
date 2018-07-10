@@ -9,15 +9,14 @@ export default {
             checkbox: config.checkboxLabelClass,
             boolean: config.checkboxLabelClass
         })[props.as];
-        const componentData = mergeData(data, {
+
+        return h('label', mergeData(data, {
             // class: [con`${field.as}LabelClass`, config.labelClass],
             class: [className, config.labelClass],
-        });
-
-        return (<label {...componentData}>
-            {field.required && prependRequired && '* '}
-            {slots().default}
-            {field.required && !prependRequired && ' *'}
-        </label>);
+        }), [
+            field.required && prependRequired && '* ',
+            slots().default,
+            field.required && !prependRequired && ' *',
+        ]);
     }
 }

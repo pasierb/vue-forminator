@@ -13,25 +13,27 @@ export const Provider = ({
         config: { type: Object, default: () => ({}) },
         validations: { type: Object, default: () => ({}) }
     },
-    render(h) { // eslint-disable-line no-unused-vars
+    render(h) {
         const { model, config, schema, validations } = this;
         const localConfig = Object.assign({}, generator.config, config);
 
-        return (<div class={config.wrapperClass}>
-            {schema.map(field => {
-                const fieldData = {
-                    props: { model, config: localConfig, generator, validations }
-                };
+        return h('div', {
+            class: config.wrapperClass
+        }, schema.map(field => {
+            const fieldData = {
+                props: { model, config: localConfig, generator, validations }
+            };
 
-                if (!Array.isArray(field)) {
-                    return (<Field {...mergeData(fieldData, { props: { field }})} />);
+            if (!Array.isArray(field)) {
+                return h(Field, mergeData(fieldData, { props: { field }}));
+            }
+
+            return h(FieldsRow(Field), mergeData(fieldData, {
+                props: {
+                    fields: field
                 }
-
-                const Row = FieldsRow(Field);
-
-                return (<Row {...mergeData(fieldData, { props: { fields: field }})} />);
-            })}
-        </div>);
+            }));
+        }));
     }
 });
 

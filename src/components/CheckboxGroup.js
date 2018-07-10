@@ -8,17 +8,13 @@ const CheckboxGroup = (Checkbox) => ({
     render: (h, { props, data }) => {
         const { field } = props;
 
-        return (<div>
-            {field.options.map(option => {
-                const fieldData = mergeData(data, {
-                    props: {
-                        field: Object.assign({}, option, { name: field.name })
-                    }
-                });
-
-                return (<Checkbox {...fieldData} />);
-            })}
-        </div>);
+        return h('div', {}, field.options.map(option => {
+            return h(Checkbox, mergeData(data, {
+                props: {
+                    field: Object.assign({}, option, { name: field.name })
+                }
+            }));
+        }));
     }
 });
 

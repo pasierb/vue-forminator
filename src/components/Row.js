@@ -6,8 +6,6 @@ export default {
     render: (h, { props, slots }) => {
         const { config } = props;
 
-        return (<div class={config.rowClass}>
-            {slots().default}
-        </div>);
+        return h('div', { class: config.rowClass }, [slots().default]);
     }
 }

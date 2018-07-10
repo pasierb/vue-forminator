@@ -7,17 +7,17 @@ const FieldsRow = (Field) => ({
     render: (h, { props, data }) => {
         const { fields, config } = props;
 
-        return (<Row config={config}>
-            {fields.map(field => {
-                const fieldData = mergeData(data, {
+        return h(Row, {
+            props: { config }
+        }, fields.map(field => {
+            return h(Column, {
+                props: { config }
+            }, [
+                h(Field, mergeData(data, {
                     props: { field }
-                });
-
-                return (<Column config={config}>
-                    <Field {...fieldData} />
-                </Column>);
-            })}
-        </Row>);
+                }))
+            ]);
+        }));
     }
 });
 

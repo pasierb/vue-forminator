@@ -32,16 +32,13 @@ const LabelWrap = (Component) => ({
 
 const generator = {
     extend(params = {}) {
-        const { inputs, config, createField, plugins } = this;
+        const { inputs, config } = this;
 
         return {
             inputs: Object.assign({}, inputs, params.inputs || {}),
             config: Object.assign({}, config, params.config || {}),
-            createField: params.createField || createField,
-            plugins: params.plugins || plugins,
         };
     },
-    plugins: [],
     inputs: {
         boolean: LabelWrap(Checkbox),
         text: LabelPrepend(Text),

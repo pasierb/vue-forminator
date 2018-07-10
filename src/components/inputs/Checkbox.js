@@ -1,5 +1,4 @@
 import { mergeData } from 'vue-functional-data-merge';
-import BaseInput from './BaseInput';
 
 const Checkbox = {
     functional: true,
@@ -17,7 +16,8 @@ const Checkbox = {
                 model[field.name] = !!e.target.checked || null;
             }
         }
-        const inputData = mergeData(data, {
+
+        return h('input', mergeData(data, {
             attrs: {
                 type: 'checkbox',
                 name: field.name,
@@ -27,10 +27,8 @@ const Checkbox = {
             on: {
                 change: onChange
             }
-        });
-
-        return (<input {...inputData}/>)
+        }));
     }
 };
 
-export default BaseInput(Checkbox);
+export default Checkbox;

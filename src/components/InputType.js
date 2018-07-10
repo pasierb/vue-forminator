@@ -9,18 +9,19 @@ export default (type) => ({
         const { model, field, config } = props;
         const cssClass = config[`${type}InputClass`] || config.inputClass;
         const onChange = props.setter || ((e) => model[field.name] = e.target.value);
-        const componentData = mergeData(data, {
+
+        return h('input', mergeData(data, {
             class: cssClass,
             attrs: {
                 type,
                 ...omit(['label'], field)
             },
             on: {
+                keyUp: onChange,
                 input: onChange,
+                change: onChange,
                 blur: onChange
             }
-        });
-
-        return h('input', componentData);
+        }));
     }
 });

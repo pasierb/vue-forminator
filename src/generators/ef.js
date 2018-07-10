@@ -9,9 +9,8 @@ import {
 } from '../components/inputs';
 import Label from '../components/Label';
 import CheckboxGroup from '../components/CheckboxGroup';
-import BaseInput from '../components/inputs/BaseInput';
 
-const EfCheckbox = BaseInput({
+const EfCheckbox = {
     functional: true,
     render: (h, { props, data }) => {
 
@@ -27,7 +26,7 @@ const EfCheckbox = BaseInput({
             })
         ])
     }
-});
+};
 
 const LabelPrepend = (component) => ({
     functional: true,

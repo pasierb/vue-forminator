@@ -22,6 +22,7 @@ export default {
                 comments: null,
                 acceptedTerms: null,
                 sports: [],
+                birthDate: null,
             }
         };
     },

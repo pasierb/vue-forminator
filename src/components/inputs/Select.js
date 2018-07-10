@@ -1,6 +1,5 @@
 import { mergeData } from 'vue-functional-data-merge';
 import omit from '../../utils/omit';
-import Base from './BaseInput';
 
 const optionAttrs = omit(['label']);
 
@@ -11,9 +10,8 @@ const createOptionGroup = (h, option, selected) => {
         }
     }, option.values.map(opt => {
         return createOption(h, opt, selected);
-    }))
+    }));
 };
-
 
 const createOption = (h, option, selected) => {
     return h('option', {
@@ -45,4 +43,4 @@ const Select = {
     }
 };
 
-export default Base(Select);
+export default Select;

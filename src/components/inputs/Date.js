@@ -24,7 +24,7 @@ const DateInput = {
             const { field, pattern, model } = this;
             const date = moment(e.target.value, pattern, true);
 
-            this.$set(model, field.name, date.isValid() ? date : null);
+            this.$set(model, field.name, date.isValid() ? date : null);            
             this.$emit('input', e);
             this.$emit('change', e);
         }
@@ -50,7 +50,7 @@ const DateInput = {
     beforeDestroy() {
         this.mask.destroy();
     },
-    render(h) { // eslint-disable-line no-unused-vars
+    render(h) {
         const { field, config, model, setValue, pattern } = this;
 
         field.title = pattern;

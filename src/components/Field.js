@@ -4,9 +4,9 @@ const Field = {
         const { field, generator, config } = props;
         const Input = generator.inputs[field.as || 'text'];
 
-        return (<div class={config.fieldClass}>
-            <Input {...data} />
-        </div>);
+        return h('div', { class: config.fieldClass }, [
+            h(Input, data)
+        ]);
     }
 }
 
