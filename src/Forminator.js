@@ -2,6 +2,7 @@ import { mergeData } from 'vue-functional-data-merge';
 import blank from './generators/blank';
 import FieldWrapper from './components/Field';
 import FieldsRow from './components/FieldsRow';
+import Factory from './Factory';
 
 export const Provider = ({
     Field = FieldWrapper,
@@ -34,6 +35,25 @@ export const Provider = ({
                 }
             }));
         }));
+    }
+});
+
+export const Provider2 = (FieldFactory = Factory) => ({
+    functional: true,
+    props: {
+        schema: { type: Array, required: true },
+        model: { type: Object, required: true },
+    },
+    render(h, ctx) {
+        return h('div', {}, ctx.props.schema.map(item =>
+            FieldFactory(h, item, ctx)
+            // h(FieldFactory(item), mergeData(data, {
+            //     props: {
+            //         field: item,
+            //         model: props.model
+            //     }
+            // }))
+        ));
     }
 });
 

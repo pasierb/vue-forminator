@@ -7,8 +7,10 @@
 </template>
 
 <script>
-import Forminator from '../Forminator';
+import { Provider2 } from '../Forminator';
 import formSchema from './formSchema';
+
+const Forminator = Provider2();
 
 export default {
     name: 'app',
