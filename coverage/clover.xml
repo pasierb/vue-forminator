@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1531430746931" clover="3.2.0">
+  <project timestamp="1531430746931" name="All files">
+    <metrics statements="36" coveredstatements="30" conditionals="34" coveredconditionals="20" methods="13" coveredmethods="7" elements="83" coveredelements="57" complexity="0" loc="36" ncloc="36" packages="2" files="8" classes="8">
+      <package name="helpers">
+        <metrics statements="5" coveredstatements="5" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="1"/>
+        <file name="InputType.js" path="/home/mpasierbski/Work/vue-forminator/src/components/helpers/InputType.js">
+          <metrics statements="5" coveredstatements="5" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="1"/>
+          <line num="4" count="3" type="stmt"/>
+          <line num="7" count="3" type="stmt"/>
+          <line num="8" count="3" type="cond" truecount="2" falsecount="0"/>
+          <line num="9" count="3" type="cond" truecount="2" falsecount="0"/>
+          <line num="11" count="3" type="stmt"/>
+        </file>
+      </package>
+      <package name="inputs">
+        <metrics statements="31" coveredstatements="25" conditionals="28" coveredconditionals="14" methods="11" coveredmethods="6"/>
+        <file name="Checkbox.js" path="/home/mpasierbski/Work/vue-forminator/src/components/inputs/Checkbox.js">
+          <metrics statements="11" coveredstatements="8" conditionals="16" coveredconditionals="5" methods="2" coveredmethods="2"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="6" count="2" type="stmt"/>
+          <line num="7" count="2" type="stmt"/>
+          <line num="8" count="2" type="cond" truecount="1" falsecount="1"/>
+          <line num="9" count="2" type="stmt"/>
+          <line num="10" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="11" count="0" type="stmt"/>
+          <line num="13" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="14" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="16" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="20" count="2" type="stmt"/>
+        </file>
+        <file name="Email.js" path="/home/mpasierbski/Work/vue-forminator/src/components/inputs/Email.js">
+          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        </file>
+        <file name="NumberInput.js" path="/home/mpasierbski/Work/vue-forminator/src/components/inputs/NumberInput.js">
+          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        </file>
+        <file name="Radio.js" path="/home/mpasierbski/Work/vue-forminator/src/components/inputs/Radio.js">
+          <metrics statements="5" coveredstatements="4" conditionals="4" coveredconditionals="2" methods="2" coveredmethods="1"/>
+          <line num="6" count="1" type="stmt"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="8" count="1" type="stmt"/>
+          <line num="9" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="12" count="1" type="stmt"/>
+        </file>
+        <file name="Select.js" path="/home/mpasierbski/Work/vue-forminator/src/components/inputs/Select.js">
+          <metrics statements="11" coveredstatements="9" conditionals="4" coveredconditionals="3" methods="6" coveredmethods="3"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="4" count="0" type="stmt"/>
+          <line num="9" count="0" type="stmt"/>
+          <line num="13" count="1" type="stmt"/>
+          <line num="14" count="4" type="stmt"/>
+          <line num="22" count="1" type="stmt"/>
+          <line num="25" count="2" type="stmt"/>
+          <line num="26" count="2" type="stmt"/>
+          <line num="27" count="2" type="stmt"/>
+          <line num="29" count="2" type="stmt"/>
+          <line num="36" count="4" type="cond" truecount="1" falsecount="1"/>
+        </file>
+        <file name="Text.js" path="/home/mpasierbski/Work/vue-forminator/src/components/inputs/Text.js">
+          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        </file>
+        <file name="Textarea.js" path="/home/mpasierbski/Work/vue-forminator/src/components/inputs/Textarea.js">
+          <metrics statements="4" coveredstatements="4" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="0"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="6" count="1" type="stmt"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="9" count="1" type="stmt"/>
+        </file>
+      </package>
+    </metrics>
+  </project>
+</coverage>

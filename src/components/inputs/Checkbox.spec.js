@@ -26,4 +26,16 @@ describe('Checkbox', () => {
 
         expect(wrapper.contains('input[type="checkbox"][name="accept"]')).toBe(true);
     });
+
+    it('should update model', () => {
+        const wrapper = shallowMount(Checkbox, {
+            context: {
+                props: { model, config, field }
+            }
+        });
+
+        expect(model.accept).toBeFalsy();
+        wrapper.find('input').trigger('click');
+        expect(model.accept).toBe(true);
+    });
 });
