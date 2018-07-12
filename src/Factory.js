@@ -1,39 +1,90 @@
-/**
- * Factory returns component that accepts as props:
- *  - model
- *  - field
- */
-
 import { mergeData } from 'vue-functional-data-merge';
-import {
-    Text,
-    Checkbox
-} from './components/inputs';
-import FieldsRow from './components/FieldsRow';
-import Field from './components/Field';
+import defaultInputs from './components/inputs';
+import Label from './components/Label';
+import Row from './components/Row';
+import Column from './components/Column';
+import CheckboxGroup from './components/CheckboxGroup';
 
-const fields = {
-    'text': Text,
-    'boolean': Checkbox
-}
+const Labeled = (component) => ({
+    functional: true,
+    render: (h, { data, props }) => {
+        return [
+            h(Label, data, props.field.label),
+            h(component, data)
+        ];
+    }
+});
 
-function factory(h, item, context) {
-    const { data, props } = context;
-    const { model } = props;
+const WrapperProvider = (Component, field) => ({
+    functional: true,
+    render: (h, { data, props }) => {
+        return h('div', {}, [
+            h(Component, mergeData(data, {
+                props: {
+                    field,
+                    ...props
+                }
+            }))
+        ])
+    }
+})
 
-    if (Array.isArray(item)) {
-        return h('div', {}, item.map(subItem => factory(h, subItem, context)));
+const defaultFields = ({ Text, Checkbox, Select, Textarea, Email }) => ({
+    'text': Labeled(Text),
+    'boolean': Checkbox,
+    'select': Labeled(Select),
+    'textarea': Labeled(Textarea),
+    'email': Labeled(Email),
+    'checkbox': Labeled(Checkbox),
+    'checkboxGroup': Labeled(CheckboxGroup(Labeled(Checkbox)))
+});
+
+const defaultConfig = {};
+
+export default function Factory({
+    FieldWrapper = WrapperProvider,
+    fields: customFields,
+    inputs: customInputs,
+    config: customConfig = {}
+} = {}) {
+    const config = Object.assign({}, defaultConfig, customConfig);
+    const inputs = Object.assign({}, defaultInputs, customInputs);
+    const fields = Object.assign(
+        {},
+        defaultFields(inputs),
+        typeof customFields === 'function'
+            ? customFields(inputs)
+            : customFields
+    );
+
+    function createField(createElement, context, item) {
+        const { data, props } = context;
+
+        if (Array.isArray(item)) {
+            return createElement(Row, { props: { config }}, item.map(subItem =>
+                createElement(Column, { props: { config }}, [
+                    createField(createElement, context, subItem)
+                ])
+            ));
+        }
+
+        const Input = fields[item.as || 'text'];
+        if (Input) {
+            return createElement(FieldWrapper(Input, item), mergeData(data, {
+                props: { config, ...props }
+            }));
+        }
     }
 
-    const Field = fields[item.as || 'text'];
+    return {
+        functional: true,
+        render(createElement, context) {
+            const { props } = context;
+            const { schema } = props;
 
-    if (Field) return h(Field, mergeData(data, {
-        props: {
-            field: item,
-            config: {},
-            model
+            return createElement('div', {}, schema.map(item => {
+                return createField(createElement, context, item);
+            }));
         }
-    }));
+    }
 }
-
-export default factory;

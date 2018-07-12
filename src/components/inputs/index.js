@@ -17,3 +17,14 @@ export {
     Radio,
     NumberInput
 };
+
+export default {
+    Text,
+    Email,
+    Textarea,
+    DateInput,
+    Select,
+    Checkbox,
+    Radio,
+    NumberInput
+}
