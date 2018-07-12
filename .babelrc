@@ -1,11 +1,13 @@
 {
-    "presets": [
-        ["env", { "modules": false }]
-    ],
     "env": {
         "test": {
             "presets": [
                 ["env", { "targets": { "node": "current" }}]
+            ]
+        },
+        "development": {
+            "presets": [
+                "@vue/app"
             ]
         }
     }
