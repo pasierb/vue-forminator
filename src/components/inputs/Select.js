@@ -12,7 +12,7 @@ const createOptionGroup = (h, option, selected) => {
 
 const createOption = (h, option, selected) => {
     return h('option', {
-        attrs: option.attrs,
+        attrs: Object.assign({}, option.attrs, { value: option.value }),
         domProps: {
             selected: option.value === selected
         }
