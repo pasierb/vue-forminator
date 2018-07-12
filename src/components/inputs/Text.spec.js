@@ -25,4 +25,16 @@ describe('Text', () => {
 
         expect(wrapper.contains('input[type="text"][name="foo"]')).toBe(true);
     });
+
+    it('should set css class', () => {
+        config.textInputClass = 'foo-class';
+
+        const wrapper = shallowMount(Text, {
+            context: {
+                props: { model,config, field }
+            }
+        });
+
+        expect(wrapper.contains('input.foo-class')).toBe(true);
+    });
 });

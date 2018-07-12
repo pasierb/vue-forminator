@@ -44,4 +44,16 @@ describe('Select', () => {
             expect(optionTag.text()).toEqual(option.label);
         });
     });
+
+    it('should set css class', () => {
+        config.selectClass = 'foo-class';
+
+        const wrapper = shallowMount(Select, {
+            context: {
+                props: { model,config, field }
+            }
+        });
+
+        expect(wrapper.contains('select.foo-class')).toBe(true);
+    });
 });

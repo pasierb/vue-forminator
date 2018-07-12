@@ -4,12 +4,6 @@ __!!!IMPORTANT!!! work in progress: not production ready__
 
 A schema-based form fields generator component for Vue.js.
 
-## Features
-
-- extensible
-- customizable
-- unobtrusive
-
 ## Usage
 
 ```javascript
@@ -34,7 +28,7 @@ new Vue({
     },
     render(h) {
         return (<form>
-            <Forminator schema={} model={form} />
+            <Forminator schema={schema} model={form} />
         </form>)
     }
 }).$mount('#app')
