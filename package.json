@@ -5,10 +5,9 @@
   "main": "./lib/vue-forminator.js",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib ./src/Forminator.js && webpack",
-    "build:components": "webpack",
+    "build": "webpack",
     "lint": "vue-cli-service lint",
-    "precommit": "build"
+    "precommit": "lint && build"
   },
   "files": [
     "dist/*",

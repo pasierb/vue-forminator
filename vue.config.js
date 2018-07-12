@@ -8,9 +8,5 @@ module.exports = {
             entry: 'src/pages/ef.js',
             template: 'public/ef.html'
         },
-        bulma: {
-            entry: 'src/pages/bulma.js',
-            template: 'public/bulma.html'
-        }
     }
 }

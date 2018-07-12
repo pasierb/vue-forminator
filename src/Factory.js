@@ -20,10 +20,7 @@ const WrapperProvider = (Component, field) => ({
     render: (h, { data, props }) => {
         return h('div', {}, [
             h(Component, mergeData(data, {
-                props: {
-                    field,
-                    ...props
-                }
+                props: { field, ...props }
             }))
         ])
     }
@@ -52,9 +49,7 @@ export default function Factory({
     const fields = Object.assign(
         {},
         defaultFields(inputs),
-        typeof customFields === 'function'
-            ? customFields(inputs)
-            : customFields
+        typeof customFields === 'function' ? customFields(inputs) : customFields
     );
 
     function createField(createElement, context, item) {

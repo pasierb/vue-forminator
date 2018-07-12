@@ -5,8 +5,6 @@ module.exports = {
     mode: 'production',
     entry: {
         'inputs': './src/components/inputs/index.js',
-        'generators/ef': './src/generators/ef.js',
-        'generators/blank': './src/generators/blank.js',
         'vue-forminator': './src/Forminator.js'
     },
     output: {
