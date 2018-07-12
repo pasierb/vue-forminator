@@ -1,49 +1,49 @@
 import { mergeData } from 'vue-functional-data-merge';
+
 import defaultInputs from './components/inputs';
-import Label from './components/Label';
+import { CheckboxGroup, RadioGroup, LabelBefore, Field } from './components/helpers';
 import Row from './components/Row';
 import Column from './components/Column';
-import CheckboxGroup from './components/CheckboxGroup';
 
-const Labeled = (component) => ({
-    functional: true,
-    render: (h, { data, props }) => {
-        return [
-            h(Label, data, props.field.label),
-            h(component, data)
-        ];
-    }
-});
-
-const WrapperProvider = (Component, field) => ({
-    functional: true,
-    render: (h, { data, props }) => {
-        return h('div', {}, [
-            h(Component, mergeData(data, {
-                props: { field, ...props }
-            }))
-        ])
-    }
-})
-
-const defaultFields = ({ Text, Checkbox, Select, Textarea, Email }) => ({
-    'text': Labeled(Text),
-    'boolean': Checkbox,
-    'select': Labeled(Select),
-    'textarea': Labeled(Textarea),
-    'email': Labeled(Email),
-    'checkbox': Labeled(Checkbox),
-    'checkboxGroup': Labeled(CheckboxGroup(Labeled(Checkbox)))
-});
+function defaultFields({ Text, Checkbox, Select, Textarea, Email, Radio }) {
+    return {
+        'text': LabelBefore(Text),
+        'boolean': LabelBefore(Checkbox),
+        'select': LabelBefore(Select),
+        'textarea': LabelBefore(Textarea),
+        'email': LabelBefore(Email),
+        'checkbox': LabelBefore(Checkbox),
+        'radio': LabelBefore(Radio),
+        'radioGroup': LabelBefore(RadioGroup(LabelBefore(Radio))),
+        'checkboxGroup': LabelBefore(CheckboxGroup(LabelBefore(Checkbox)))
+    };
+}
 
 const defaultConfig = {};
 
-export default function Factory({
-    FieldWrapper = WrapperProvider,
-    fields: customFields,
-    inputs: customInputs,
-    config: customConfig = {}
-} = {}) {
+const defaultProps = {
+    model: { type: Object, required: true },
+    schema: { type: Array, required: true }
+}
+
+/**
+ * 
+ * @param {Object} [options] - factory configuration options
+ * @param {Object} [options.params]
+ * @param {Function} [options.Field]
+ * @param {Object} [options.inputs]
+ * @param {Object|Function} [options.fields]
+ * @param {string} [options.fallbackField=text] - Field type that will be used in case of undefined type
+ */
+export default function Factory(options = {}) {
+    const {
+        Field: FieldWrapper = Field,
+        fields: customFields,
+        inputs: customInputs,
+        config: customConfig = {},
+        props: customProps = {},
+        fallbackField = 'text'
+    } = options;
     const config = Object.assign({}, defaultConfig, customConfig);
     const inputs = Object.assign({}, defaultInputs, customInputs);
     const fields = Object.assign(
@@ -63,7 +63,7 @@ export default function Factory({
             ));
         }
 
-        const Input = fields[item.as || 'text'];
+        const Input = fields[item.as] || fields[fallbackField];
         if (Input) {
             return createElement(FieldWrapper(Input, item), mergeData(data, {
                 props: { config, ...props }
@@ -72,6 +72,7 @@ export default function Factory({
     }
 
     return {
+        props: Object.assign({}, defaultProps, customProps),
         functional: true,
         render(createElement, context) {
             const { props } = context;

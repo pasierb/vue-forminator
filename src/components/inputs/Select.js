@@ -1,7 +1,4 @@
 import { mergeData } from 'vue-functional-data-merge';
-import omit from '../../utils/omit';
-
-const optionAttrs = omit(['label']);
 
 const createOptionGroup = (h, option, selected) => {
     return h('optgroup', {
@@ -15,7 +12,7 @@ const createOptionGroup = (h, option, selected) => {
 
 const createOption = (h, option, selected) => {
     return h('option', {
-        attrs: optionAttrs(option),
+        attrs: option.attrs,
         domProps: {
             selected: option.value === selected
         }
@@ -31,9 +28,7 @@ const Select = {
 
         return h('select', mergeData(data, {
             class: config.selectClass,
-            attrs: {
-                name: field.name,
-            },
+            attrs: Object.assign({}, field.attrs || {}, { name: field.name }),
             on: {
                 change: onChange
             }

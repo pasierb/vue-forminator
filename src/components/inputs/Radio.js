@@ -1,23 +1,27 @@
+import { mergeData } from 'vue-functional-data-merge';
+
 export default {
     functional: true,
-    render: (h, ctx) => {
-        const { props, listeners = {} } = ctx;
-        const { config, model, field } = props;
+    render: (h, { props, data }) => {
+        const { model, field } = props;
         const checked = model[field.name] === field.value;
         const onChange = (e) => {
             model[field.name] = e.target.checked && props.value;
-            listeners.change && listeners.change(e, props);
-            config.onChange && config.onChange(e, props);
         };
 
-        return h('input', {
-            attrs: Object.assign({}, props, {
-                name: props.name,
+        return h('input', mergeData(data, {
+            attrs: Object.assign({}, field.attrs || {}, {
                 type: 'radio',
-                value: props.value,
-                checked 
+                name: field.name,
+                value: field.value,
             }),
-            on: Object.assign({}, listeners, { change: onChange })
-        });
+            domProps: {
+                checked 
+            },
+            on: {
+                change: onChange,
+                input: onChange
+            }
+        }));
     }
 }

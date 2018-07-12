@@ -13,12 +13,16 @@
 <script>
 import { mergeData } from 'vue-functional-data-merge';
 import { Factory } from '../Forminator';
-import { Checkbox } from '../components/inputs';
+import { Checkbox, Radio } from '../components/inputs';
+import { CheckboxGroup, LabelBefore, RadioGroup } from '../components/helpers';
 import { required, email } from 'vuelidate/lib/validators';
 import formSchema from './formSchema';
 
 const Forminator = Factory({
-    FieldWrapper: (Input, field) => ({
+    props: {
+        validations: { type: Object, default: () => ({}) }
+    },
+    Field: (Input, field) => ({
         functional: true,
         render: (h, { data, props }) => {
             const { config, model, validations } = props;
@@ -44,7 +48,26 @@ const Forminator = Factory({
             ]);
         }
     }),
+    fields: ({ Checkbox, Radio }) => {
+        return {
+            boolean: Checkbox,
+            checkboxGroup: LabelBefore(CheckboxGroup(Checkbox)),
+            radioGroup: LabelBefore(RadioGroup(Radio))
+        }
+    },
     inputs: {
+        Radio: {
+            functional: true,
+            render(h, { data, props }) {
+                return h('label', {
+                    class: 'e-radio'
+                }, [
+                    h(Radio, data),
+                    h('span', { class: 'label-text' }, props.field.label),
+                    h('span', { class: 'e-check__indicator' })
+                ])
+            }
+        },
         Checkbox: {
             functional: true,
             render: (h, { props, data }) => {
@@ -85,7 +108,8 @@ export default {
                 comments: null,
                 acceptedTerms: null,
                 sports: [],
-                birthDate: null
+                birthDate: null,
+                radio: 'off',
             }
         }
     },

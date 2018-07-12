@@ -11,7 +11,6 @@ export default {
         })[props.as];
 
         return h('label', mergeData(data, {
-            // class: [con`${field.as}LabelClass`, config.labelClass],
             class: [className, config.labelClass],
         }), [
             field.required && prependRequired && '* ',

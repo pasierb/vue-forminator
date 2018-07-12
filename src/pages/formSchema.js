@@ -9,6 +9,15 @@ export default [
     { name: 'comments', label: 'Questions and comments', as: 'textarea' },
     { name: 'acceptedTerms', as: 'boolean', label: `Yes, I (or my legal guardian) have <strong>read and understood</strong> how EF processes my personal data as set out in the Privacy Policy, and agree to EF's use of my personal data for direct marketing purposes.` },
     {
+        name: 'radio',
+        as: 'radioGroup',
+        label: 'Sample radio',
+        options: [
+            { value: 'on', label: 'ON!' },
+            { value: 'off', label: 'OFF!' },
+        ]
+    },
+    {
         name: 'sports',
         label: 'Interests',
         as: 'checkboxGroup',
@@ -25,7 +34,7 @@ export default [
         options: [
             { value: 'male', label: 'Gentleman' },
             { value: 'female', label: 'Lady' },
-            { label: 'Undicided', disabled: 'disabled' },
+            { label: 'Undicided', attrs: { disabled: 'disabled' }},
         ]
     },
     {

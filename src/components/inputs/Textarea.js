@@ -1,7 +1,4 @@
-import omit from '../../utils/omit';
 import { mergeData } from 'vue-functional-data-merge';
-
-const fieldAttrs = omit(['as', 'label']);
 
 const Textarea =  {
     functional: true,
@@ -11,7 +8,7 @@ const Textarea =  {
 
         return h('textarea', mergeData(data, {
             class: config.textareaClass || config.inputClass,
-            attrs: fieldAttrs(field),
+            attrs: field.attrs,
             on: {
                 input: onChange,    
                 blur: onChange

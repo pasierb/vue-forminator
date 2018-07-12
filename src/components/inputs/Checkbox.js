@@ -18,11 +18,11 @@ const Checkbox = {
         }
 
         return h('input', mergeData(data, {
-            attrs: {
+            attrs: Object.assign({}, field.attrs || {}, {
                 type: 'checkbox',
                 name: field.name,
                 value: field.value
-            },
+            }),
             domProps: { checked },
             on: {
                 change: onChange
