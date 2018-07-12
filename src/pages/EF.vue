@@ -52,7 +52,7 @@ const Forminator = Factory({
         return {
             boolean: Checkbox,
             checkboxGroup: LabelBefore(CheckboxGroup(Checkbox)),
-            radioGroup: LabelBefore(RadioGroup(Radio))
+            radioGroup: LabelBefore(RadioGroup(Radio)),
         }
     },
     inputs: {

@@ -1,9 +1,14 @@
 export default [
-    [
-        { name: 'firstName', label: 'First name' },
-        { name: 'lastName', label: 'Last name' },
-        { as: 'noop' }
-    ],
+    {
+        as: 'fieldset',
+        label: 'Student name',
+        fields: [
+            [
+                { name: 'firstName', attrs: { placeholder: 'First name' }},
+                { name: 'lastName', attrs: { placeholder: 'Last name' }},
+            ],
+        ]
+    },
     { name: 'email', label: 'Email address', as: 'email' },
     { name: 'phone', label: 'Phone number' },
     { name: 'birthDate', label: 'Birthday', as: 'date' },

@@ -5,7 +5,7 @@ export default function LabelBefore(component) {
         functional: true,
         render: (h, { data, props }) => {
             return [
-                h(Label, data, props.field.label),
+                props.field.label && h(Label, data, props.field.label),
                 h(component, data)
             ];
         }

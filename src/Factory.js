@@ -1,7 +1,7 @@
 import { mergeData } from 'vue-functional-data-merge';
 
 import defaultInputs from './components/inputs';
-import { CheckboxGroup, RadioGroup, LabelBefore, Field } from './components/helpers';
+import { CheckboxGroup, RadioGroup, LabelBefore, Field, Fieldset } from './components/helpers';
 import Row from './components/Row';
 import Column from './components/Column';
 
@@ -25,7 +25,7 @@ const defaultConfig = {};
 const defaultProps = {
     model: { type: Object, required: true },
     schema: { type: Array, required: true }
-}
+};
 
 /**
  * 
@@ -62,6 +62,12 @@ export default function Factory(options = {}) {
                     createField(createElement, context, subItem)
                 ])
             ));
+        }
+
+        if (item.as === 'fieldset') {
+            return createElement(Fieldset(createField, item), mergeData(data, {
+                props: { config, ...props }
+            }));
         }
 
         const Input = fields[item.as] || fields[fallbackField];
