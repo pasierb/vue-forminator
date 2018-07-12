@@ -8,7 +8,7 @@ const Textarea =  {
 
         return h('textarea', mergeData(data, {
             class: config.textareaClass || config.inputClass,
-            attrs: field.attrs,
+            attrs: Object.assign({}, field.attrs || {}, { name: field.name }),
             on: {
                 input: onChange,    
                 blur: onChange

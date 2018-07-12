@@ -10,7 +10,7 @@ export default function InputType(type) {
 
             return h('input', mergeData(data, {
                 class: cssClass,
-                attrs: Object.assign({}, field.attrs || {}, { type }),
+                attrs: Object.assign({}, field.attrs || {}, { type, name: field.name }),
                 on: {
                     keyUp: onChange,
                     input: onChange,

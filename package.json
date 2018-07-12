@@ -7,7 +7,8 @@
     "serve": "vue-cli-service serve",
     "build": "webpack",
     "lint": "vue-cli-service lint",
-    "precommit": "lint && build"
+    "precommit": "lint && build",
+    "test": "jest"
   },
   "files": [
     "dist/*",
@@ -23,15 +24,20 @@
     "vue-functional-data-merge": "^2.0.6"
   },
   "devDependencies": {
-    "vue": "^2.3",
     "@vue/cli-plugin-babel": "^3.0.0-beta.15",
     "@vue/cli-plugin-eslint": "^3.0.0-beta.15",
     "@vue/cli-service": "^3.0.0-beta.15",
+    "@vue/server-test-utils": "^1.0.0-beta.20",
+    "@vue/test-utils": "^1.0.0-beta.20",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
+    "babel-jest": "^23.4.0",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-plugin-transform-vue-jsx": "^3.7.0",
     "babel-preset-env": "^1.7.0",
+    "jest": "^23.4.0",
+    "jest-serializer-vue": "^2.0.2",
+    "vue": "^2.3",
     "vue-template-compiler": "^2.5.16",
     "vuelidate": "^0.7.4",
     "webpack-cli": "^3.0.8"
@@ -49,6 +55,21 @@
     "parserOptions": {
       "parser": "babel-eslint"
     }
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
+    },
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    },
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/jest-serializer-vue"
+    ]
   },
   "postcss": {
     "plugins": {

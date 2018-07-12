@@ -31,6 +31,7 @@ const Forminator = Factory({
             const touch = () => fieldValidation && fieldValidation.$touch();
 
             field.required = required;
+            field.attrs = Object.assign({ placeholder: field.label }, field.attrs || {})
 
             return h('div', {
                 class: {
