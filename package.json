@@ -16,13 +16,14 @@
     "*.json",
     "*.js"
   ],
+  "peerDependencies": {
+    "vue": ">= 2.3 < 3"
+  },
   "dependencies": {
-    "vue": "^2.3",
-    "imask": "^3.4.0",
-    "moment": "2.x",
     "vue-functional-data-merge": "^2.0.6"
   },
   "devDependencies": {
+    "vue": "^2.3",
     "@vue/cli-plugin-babel": "^3.0.0-beta.15",
     "@vue/cli-plugin-eslint": "^3.0.0-beta.15",
     "@vue/cli-service": "^3.0.0-beta.15",
