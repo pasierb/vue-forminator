@@ -15,7 +15,8 @@ function defaultFields({ Text, Checkbox, Select, Textarea, Email, Radio }) {
         'checkbox': LabelBefore(Checkbox),
         'radio': LabelBefore(Radio),
         'radioGroup': LabelBefore(RadioGroup(LabelBefore(Radio))),
-        'checkboxGroup': LabelBefore(CheckboxGroup(LabelBefore(Checkbox)))
+        'checkboxGroup': LabelBefore(CheckboxGroup(LabelBefore(Checkbox))),
+        'noop': { render: () => null }
     };
 }
 

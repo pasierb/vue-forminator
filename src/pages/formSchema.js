@@ -2,6 +2,7 @@ export default [
     [
         { name: 'firstName', label: 'First name' },
         { name: 'lastName', label: 'Last name' },
+        { as: 'noop' }
     ],
     { name: 'email', label: 'Email address', as: 'email' },
     { name: 'phone', label: 'Phone number' },
