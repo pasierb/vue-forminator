@@ -4,12 +4,14 @@ export default function RadioGroup(Radio) {
     return {
         functional: true,
         render(h, { data, props }) {
-            const { field } = props;
+            const { field, model, config } = props;
 
             return h('div', {}, field.options.map(option =>
                 h(Radio, mergeData(data, {
                     props: {
-                        field: { name: field.name, ...option }
+                        field: { name: field.name, ...option },
+                        model,
+                        config
                     }
                 }))
             ));

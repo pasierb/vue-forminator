@@ -6,7 +6,7 @@ export default {
         const { model, field } = props;
         const checked = model[field.name] === field.value;
         const onChange = (e) => {
-            model[field.name] = e.target.checked && props.value;
+            model[field.name] = e.target.checked && field.value;
         };
 
         return h('input', mergeData(data, {
