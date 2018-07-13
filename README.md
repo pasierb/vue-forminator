@@ -1,6 +1,8 @@
 # vue-forminator
 
-__!!!IMPORTANT!!! work in progress: not production ready__
+Forminator is a "no magic", extensible, configurable, schema-based form fields factory.
+
+__!!!WIP!!! use at your own risk__
 
 A schema-based form fields generator component for Vue.js.
 
@@ -11,6 +13,11 @@ import Vue from 'vue';
 import Forminator from 'vue-forminator';
 
 new Vue({
+    render(h) {
+        return (<form>
+            <Forminator schema={schema} model={form} />
+        </form>)
+    },
     data() {
         return {
             form: {}
@@ -26,10 +33,29 @@ new Vue({
             { name: 'acceptedTerms', label: 'Accept terms', as: 'boolean' },
         ])
     },
-    render(h) {
-        return (<form>
-            <Forminator schema={schema} model={form} />
-        </form>)
-    }
 }).$mount('#app')
 ```
+
+## Field types
+
+- `text`
+- `select`
+- `number`
+- `email`
+- `boolean`
+- `checkboxGroup`
+- `radioGroup`
+- `fieldset`
+- `textarea`
+
+## Testing
+
+```bash
+npm run test
+```
+
+## TODO
+
+- [ ] bulma.io config example
+- [ ] bootstrap config example
+- [ ] docs
