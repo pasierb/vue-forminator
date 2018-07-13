@@ -2,10 +2,6 @@
 
 Forminator is a "no magic", extensible, configurable, schema-based form fields factory.
 
-__!!!WIP!!! use at your own risk__
-
-A schema-based form fields generator component for Vue.js.
-
 ## Usage
 
 ```javascript
@@ -36,17 +32,53 @@ new Vue({
 }).$mount('#app')
 ```
 
-## Field types
+## Schema definition
 
-- `text`
-- `select`
-- `number`
-- `email`
-- `boolean`
-- `checkboxGroup`
-- `radioGroup`
-- `fieldset`
-- `textarea`
+```javascript
+[
+    // generic field definition
+    {
+        name: 'modelKey',       // required
+        as: 'text',             // type of input (default: "text")
+        label: 'Label text',    // optional
+        attrs: {},              // optional html attributes passed to input tag
+    }
+
+    // 'select' field
+    {
+        as: 'select',
+        options: [
+            { label: 'Option text', value: 'optionValue', attrs: {} }
+        ]
+    }
+
+    // renders fields in a row
+    [
+        { name: 'firstName', label: 'First name' },
+        { name: 'lastName', label: 'Last name' },
+        ...
+    ]
+]
+```
+
+## Customization
+
+```javascript
+import { Factory } from 'vue-forminator'
+
+const Forminator = Factory({
+    config: {
+        labelClass: 'control-label',
+        inputClass: 'form-control',
+        selectClass: 'select',
+        fieldClass: 'form-group',
+        rowClass: 'row',
+        columnClass: 'col',
+        fieldsetClass: 'form-fieldset',
+        fieldsetLegendClass: 'form-fieldset',
+    }
+})
+```
 
 ## Testing
 
