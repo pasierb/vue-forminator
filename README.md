@@ -34,22 +34,29 @@ new Vue({
 
 ## Schema definition
 
+### Text field
 ```javascript
 [
-    // generic field definition
     {
-        name: 'modelKey',       // required
+        name: 'modelKey',
         as: 'text',             // type of input (default: "text")
         label: 'Label text',    // optional
         attrs: {},              // optional html attributes passed to input tag
     }
 
-    // 'select' field
+    // <select>
+    //   <option value="optionValue">Option text</option>
+    // </select>
     {
         as: 'select',
         options: [
             { label: 'Option text', value: 'optionValue', attrs: {} }
         ]
+    }
+
+    // <input type="checkbox">
+    {
+        as: 'boolean'
     }
 
     // renders fields in a row
