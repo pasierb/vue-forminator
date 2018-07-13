@@ -54,6 +54,8 @@ export default function Factory(options = {}) {
     );
 
     function createField(createElement, context, item) {
+        if (!item) return null;
+
         const { data, props } = context;
 
         if (Array.isArray(item)) {
