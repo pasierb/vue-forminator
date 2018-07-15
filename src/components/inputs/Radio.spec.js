@@ -12,7 +12,8 @@ describe('Radio', () => {
         };
         field = {
             name: 'accept',
-            label: 'Accept terms'
+            label: 'Accept terms',
+            value: 'yes'
         };
         config = {};
     });
@@ -25,5 +26,17 @@ describe('Radio', () => {
         });
 
         expect(wrapper.contains('input[type="radio"][name="accept"]')).toBe(true);
+    });
+
+    it('should update model', () => {
+        const wrapper = shallowMount(Radio, {
+            context: {
+                props: { model, config, field }
+            }
+        });
+
+        expect(model.accept).toBeFalsy();
+        wrapper.find('input').trigger('click');
+        expect(model.accept).toEqual('yes');
     });
 });
