@@ -1,5 +1,7 @@
 # vue-forminator
 
+[![CircleCI](https://circleci.com/gh/pasierb/vue-forminator/tree/master.svg?style=svg)](https://circleci.com/gh/pasierb/vue-forminator/tree/master)
+
 Forminator is a "no magic", extensible, configurable, schema-based form fields factory.
 
 ## Usage
