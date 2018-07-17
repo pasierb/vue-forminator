@@ -8,10 +8,7 @@ const Textarea =  {
         const attrs = field.attrs || {};
 
         return h('textarea', mergeData(data, {
-            class: [
-                config.textareaClass || config.inputClass,
-                attrs.class || ''
-            ],
+            class: attrs.class || config.textareaClass || config.inputClass,
             attrs: Object.assign({}, attrs || {}, { name: field.name }),
             on: {
                 input: onChange,    

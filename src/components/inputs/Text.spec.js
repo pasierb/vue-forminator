@@ -38,7 +38,7 @@ describe('Text', () => {
         expect(wrapper.contains('input.foo-class')).toBe(true);
     });
 
-    it('should add class from field attrs', () => {
+    it('should set class from field attrs', () => {
         config.textInputClass = 'foo-class';
         field.attrs = {
             class: 'custom-class'
@@ -50,6 +50,6 @@ describe('Text', () => {
             }
         });
 
-        expect(wrapper.contains('input.foo-class.custom-class')).toBe(true);
+        expect(wrapper.contains('input.custom-class:not(.foo-class)')).toBe(true);
     });
 });

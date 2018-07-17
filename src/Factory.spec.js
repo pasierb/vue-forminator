@@ -25,7 +25,7 @@ describe('Factory', () => {
         ]
         const wrapper = mount(Forminator, {
             context: {
-                props:  { model, schema, config }
+                props:  { model, schema }
             }
         });
 
@@ -51,7 +51,7 @@ describe('Factory', () => {
         ]
         const wrapper = mount(Forminator, {
             context: {
-                props:  { model, schema, config }
+                props:  { model, schema }
             }
         });
 
@@ -81,12 +81,12 @@ describe('Factory', () => {
         ]
         const wrapper = mount(Forminator, {
             context: {
-                props:  { model, schema, config }
+                props:  { model, schema }
             }
         });
 
-        expect(wrapper.contains('div.row > div.col.sm-12 > div.field > input[name="foo"]')).toBe(true);
-        expect(wrapper.contains('div.row > div.col.sm-6 > div.field > input[name="bar"]')).toBe(true);
+        expect(wrapper.contains('div.row > div.sm-12:not(.col) > div.field > input[name="foo"]')).toBe(true);
+        expect(wrapper.contains('div.row > div.sm-6:not(.col) > div.field > input[name="bar"]')).toBe(true);
     });
 
     it('should append row class from attrs', () => {
@@ -108,11 +108,31 @@ describe('Factory', () => {
         ]
         const wrapper = mount(Forminator, {
             context: {
-                props:  { model, schema, config }
+                props:  { model, schema }
             }
         });
 
-        expect(wrapper.contains('div.row.flex > div.col > div.field > input[name="foo"]')).toBe(true);
-        expect(wrapper.contains('div.row.flex > div.col > div.field > input[name="bar"]')).toBe(true);
+        expect(wrapper.contains('div.flex:not(.row) > div.col > div.field > input[name="foo"]')).toBe(true);
+        expect(wrapper.contains('div.flex:not(.row) > div.col > div.field > input[name="bar"]')).toBe(true);
+    });
+
+    it('should override default config', () => {
+        const schema = [
+            [
+                { name: 'foo' },
+                { name: 'bar' },
+            ]
+        ];
+        const customConfig = {
+            rowClass: 'funny-row',
+            fieldClass: 'funny-field'
+        };
+        const wrapper = mount(Forminator, {
+            context: {
+                props: { model, schema, config: customConfig }
+            }
+        });
+
+        expect(wrapper.contains('div.funny-row:not(.row) > div.col > div.funny-field:not(.field) > input[name="foo"]')).toBe(true);
     });
 });
