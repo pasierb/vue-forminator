@@ -60,8 +60,6 @@ export default function Factory(options = {}) {
         const { data, props } = context;
         const { config: componentConfig = {}} = props;
 
-        // console.log({ props, defaultConfig, componentConfig });
-
         const config = Object.assign({}, globalConfig, componentConfig);
 
         if (Array.isArray(item)) {
@@ -74,7 +72,7 @@ export default function Factory(options = {}) {
 
         if (item.as === 'fieldset') {
             return createElement(Fieldset(createField, item), mergeData(data, {
-                props: { config, ...props }
+                props: { ...props, config }
             }));
         }
 
