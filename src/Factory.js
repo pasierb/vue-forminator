@@ -72,6 +72,18 @@ export default function Factory(options = {}) {
             }));
         }
 
+        if (item.as === 'row') {
+            return createElement(Row, {
+                props: { config, field: item }
+            }, item.columns.map(column => {
+                return createElement(Column, {
+                    props: { config, field: column }
+                }, [
+                    createField(createElement, context, column.field)
+                ]);
+            }));
+        }
+
         const Input = fields[item.as] || fields[fallbackField];
         if (Input) {
             return createElement(FieldWrapper(Input, item), mergeData(data, {
