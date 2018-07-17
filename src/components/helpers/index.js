@@ -1,24 +1,27 @@
-import InputType from './InputType';
 import CheckboxGroup from './CheckboxGroup';
-import RadioGroup from './RadioGroup';
-import LabelBefore from './LabelBefore';
 import Field from './Field';
 import Fieldset from './Fieldset';
+import InputType from './InputType';
+import LabelBefore from './LabelBefore';
+import LabelWrap from './LabelWrap';
+import RadioGroup from './RadioGroup';
 
 export {
-    InputType,
-    Fieldset,
     CheckboxGroup,
-    RadioGroup,
+    Field,
+    Fieldset,
+    InputType,
     LabelBefore,
-    Field
+    LabelWrap,
+    RadioGroup
 }
 
 export default {
-    InputType,
-    Fieldset,
     CheckboxGroup,
+    Field,
+    Fieldset,
+    InputType,
     LabelBefore,
-    RadioGroup,
-    Field
+    LabelWrap,
+    RadioGroup
 }

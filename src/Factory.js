@@ -1,23 +1,29 @@
 import { mergeData } from 'vue-functional-data-merge';
 
 import defaultInputs from './components/inputs';
-import { CheckboxGroup, RadioGroup, LabelBefore, Field, Fieldset } from './components/helpers';
+import {
+    CheckboxGroup,
+    Field,
+    Fieldset,
+    LabelBefore,
+    LabelWrap,
+    RadioGroup
+} from './components/helpers';
 import Row from './components/Row';
 import Column from './components/Column';
 
 function defaultFields({ Text, Checkbox, Select, Textarea, Email, Radio, NumberInput }) {
     return {
-        'text': LabelBefore(Text),
-        'boolean': LabelBefore(Checkbox),
-        'select': LabelBefore(Select),
-        'textarea': LabelBefore(Textarea),
+        'boolean': LabelWrap(Checkbox),
+        'checkbox': LabelWrap(Checkbox),
+        'checkboxGroup': LabelBefore(CheckboxGroup(LabelWrap(Checkbox))),
         'email': LabelBefore(Email),
         'number': LabelBefore(NumberInput),
-        'checkbox': LabelBefore(Checkbox),
         'radio': LabelBefore(Radio),
         'radioGroup': LabelBefore(RadioGroup(LabelBefore(Radio))),
-        'checkboxGroup': LabelBefore(CheckboxGroup(LabelBefore(Checkbox))),
-        'noop': { render: () => null }
+        'select': LabelBefore(Select),
+        'text': LabelBefore(Text),
+        'textarea': LabelBefore(Textarea),
     };
 }
 
