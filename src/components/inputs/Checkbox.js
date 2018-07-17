@@ -3,7 +3,8 @@ import { mergeData } from 'vue-functional-data-merge';
 const Checkbox = {
     functional: true,
     render: (h, { props, data }) => {
-        const { model, field } = props;
+        const { model, field, config } = props;
+        const attrs = field.attrs || {};
         const isArray = Array.isArray(model[field.name]);
         const checked = isArray ? model[field.name].indexOf(field.value) !== -1 : model[field.name];
         const onChange = (e) => {
@@ -18,6 +19,10 @@ const Checkbox = {
         }
 
         return h('input', mergeData(data, {
+            class: [
+                config.checkboxClass,
+                attrs.class || ''
+            ],
             attrs: Object.assign({}, field.attrs || {}, {
                 type: 'checkbox',
                 name: field.name,

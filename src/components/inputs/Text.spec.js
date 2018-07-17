@@ -31,10 +31,25 @@ describe('Text', () => {
 
         const wrapper = shallowMount(Text, {
             context: {
-                props: { model,config, field }
+                props: { model, config, field }
             }
         });
 
         expect(wrapper.contains('input.foo-class')).toBe(true);
+    });
+
+    it('should add class from field attrs', () => {
+        config.textInputClass = 'foo-class';
+        field.attrs = {
+            class: 'custom-class'
+        };
+
+        const wrapper = shallowMount(Text, {
+            context: {
+                props: { model, config, field }
+            }
+        });
+
+        expect(wrapper.contains('input.foo-class.custom-class')).toBe(true);
     });
 });

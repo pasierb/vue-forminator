@@ -39,4 +39,18 @@ describe('Radio', () => {
         wrapper.find('input').trigger('click');
         expect(model.accept).toEqual('yes');
     });
+
+    it('should add css class from attrs', () => {
+        field.attrs = {
+            class: 'bar-class'
+        };
+
+        const wrapper = shallowMount(Radio, {
+            context: {
+                props: { model, config, field }
+            }
+        });
+
+        expect(wrapper.contains('input[type="radio"].bar-class')).toBe(true);
+    });
 });

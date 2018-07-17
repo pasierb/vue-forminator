@@ -23,12 +23,16 @@ const Select = {
     functional: true,
     render: (h, { props, data }) => {
         const { field, model, config } = props;
+        const attrs = field.attrs || {};
         const selected = model[field.name];
         const onChange = (e) => model[field.name] = e.target.value;
 
         return h('select', mergeData(data, {
-            class: config.selectClass,
-            attrs: Object.assign({}, field.attrs || {}, { name: field.name }),
+            class: [
+                config.selectClass,
+                attrs.class || ''
+            ],
+            attrs: Object.assign({}, attrs || {}, { name: field.name }),
             on: {
                 change: onChange
             }
