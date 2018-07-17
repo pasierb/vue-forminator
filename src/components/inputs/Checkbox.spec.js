@@ -38,4 +38,31 @@ describe('Checkbox', () => {
         wrapper.find('input').trigger('click');
         expect(model.accept).toBe(true);
     });
+
+    it('should set css class', () => {
+        config.checkboxClass = 'foo-class';
+
+        const wrapper = shallowMount(Checkbox, {
+            context: {
+                props: { model, config, field }
+            }
+        });
+
+        expect(wrapper.contains('input.foo-class')).toBe(true);
+    });
+
+    it('should add class from field attrs', () => {
+        config.checkboxClass = 'foo-class';
+        field.attrs = {
+            class: 'custom-class'
+        };
+
+        const wrapper = shallowMount(Checkbox, {
+            context: {
+                props: { model, config, field }
+            }
+        });
+
+        expect(wrapper.contains('input.foo-class.custom-class')).toBe(true);
+    });
 });

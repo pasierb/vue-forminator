@@ -25,4 +25,19 @@ describe('Textarea', () => {
 
         expect(wrapper.contains('textarea[name="foo"]')).toBe(true);
     });
+
+    it('should add class from field attrs', () => {
+        config.textareaClass = 'foo-class';
+        field.attrs = {
+            class: 'custom-class'
+        };
+
+        const wrapper = shallowMount(Textarea, {
+            context: {
+                props: { model, config, field }
+            }
+        });
+
+        expect(wrapper.contains('textarea.foo-class.custom-class')).toBe(true);
+    });
 });

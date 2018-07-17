@@ -56,4 +56,19 @@ describe('Select', () => {
 
         expect(wrapper.contains('select.foo-class')).toBe(true);
     });
+
+    it('should set css class from attrs', () => {
+        config.selectClass = 'foo-class';
+        field.attrs = {
+            class: 'bar-class'
+        };
+
+        const wrapper = shallowMount(Select, {
+            context: {
+                props: { model,config, field }
+            }
+        });
+
+        expect(wrapper.contains('select.foo-class.bar-class')).toBe(true);
+    });
 });
