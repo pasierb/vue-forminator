@@ -34,43 +34,121 @@ new Vue({
 }).$mount('#app')
 ```
 
-## Schema definition
+# Schema definition
 
-### Text field
+## text|number|email
 ```javascript
-[
-    {
-        name: 'modelKey',
-        as: 'text',             // type of input (default: "text")
-        label: 'Label text',    // optional
-        attrs: {},              // optional html attributes passed to input tag
-    }
-
-    // <select>
-    //   <option value="optionValue">Option text</option>
-    // </select>
-    {
-        as: 'select',
-        options: [
-            { label: 'Option text', value: 'optionValue', attrs: {} }
-        ]
-    }
-
-    // <input type="checkbox">
-    {
-        as: 'boolean'
-    }
-
-    // renders fields in a row
-    [
-        { name: 'firstName', label: 'First name' },
-        { name: 'lastName', label: 'Last name' },
+{
+    as: 'text|number|email',
+    name: 'fieldName',
+    attrs: {
+        // html attributes passed to input element, for example:
+        placeholder: 'Field label',
+        class: 'customInputClass',
         ...
-    ]
-]
+    }
+}
 ```
 
-## Customization
+## checkbox|boolean
+```javascript
+{
+    as: 'boolean',
+    name: 'fieldName',
+    attrs: {
+        // html attributes passed to input element, for example:
+        class: 'customInputClass',
+        ...
+    }
+}
+```
+
+## select
+```javascript
+{
+    as: 'select',
+    name: 'fieldName',
+    attrs: {
+        // html attributes passed to input element, for example:
+        class: 'customInputClass',
+        ...
+    },
+    options: [
+        {
+            value: 'optionValue',
+            label: 'Option text label',
+            attrs: {
+                // html attributes passed to option element, for example:
+                disabled: 'disabled',
+                ...
+            }
+        },
+        ...
+    ]
+}
+```
+
+## radio
+```javascript
+{
+    as: 'radioGroup',
+    name: 'fieldName',
+    options: [
+        {
+            value: 'optionValue',
+            label: 'Option text label',
+            attrs: {
+                // html attributes passed to input element, for example:
+                disabled: 'disabled',
+                ...
+            }
+        },
+        ...
+    ]
+}
+```
+
+## Rows and columns
+
+`row` field type can be used to render fields inline. It generates `div` element with `config.rowClass` css class followed by set of `div`s (columns) with `config.columnClass` css class.
+
+```javascript
+// short version, filled with default values
+[
+    { name: 'firstName', as: 'text' },
+    { name: 'email', as: 'email' },
+],
+
+// long version for inplace costumization
+{
+    as: 'row',
+    attrs: {
+        // html attributes passed to row wrapper element, for example:
+        class: 'row space-around',
+        ...
+    },
+    columns: [
+        { as: 'text', name: 'address' }, // shorthand for default column definition
+
+        // long version for inplace customization
+        {
+            as: 'column',
+            attrs: {
+                // html attributes passed to column wrapper element, for example:
+                class: 'col col-sm-4',
+                ...
+            },
+            field: {
+                // any field definition, for example:
+                name: 'postalCode',
+                as: 'text'
+            }
+        }
+    ]
+}
+```
+
+# Customization
 
 ```javascript
 import { Factory } from 'vue-forminator'
@@ -79,23 +157,39 @@ const Forminator = Factory({
     config: {
         labelClass: 'control-label',
         inputClass: 'form-control',
+        textInputClass: 'string or inputClass if not provided'
+        numberInputClass: 'string or inputClass if not provided'
+        emailInputClass: 'string or inputClass if not provided'
         selectClass: 'select',
         fieldClass: 'form-group',
         rowClass: 'row',
         columnClass: 'col',
         fieldsetClass: 'form-fieldset',
         fieldsetLegendClass: 'form-fieldset',
+    },
+    Field, // Field component provider function
+    inputs: {
+        YourCustomInputComponent,
+        // basic input components, i.e.
+        Text,
+        Checkbox,
+    },
+    fields: function({ ..inputs }) {
+        return {
+            'text': LabelPrepend(Text),
+            'boolean': LabelWrap(Checkbox)
+        };
     }
 })
 ```
 
-## Testing
+# Testing
 
 ```bash
 npm run test
 ```
 
-## TODO
+# TODO
 
 - [ ] bulma.io config example
 - [ ] bootstrap config example
