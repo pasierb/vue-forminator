@@ -7,7 +7,8 @@
 </template>
 
 <script>
-import Forminator from '../Forminator';
+// import Forminator from '../Forminator';
+import Forminator from '../presets/bootstrap';
 import formSchema from './formSchema';
 
 export default {

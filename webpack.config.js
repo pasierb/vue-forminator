@@ -6,6 +6,7 @@ module.exports = {
     entry: {
         'inputs': './src/components/inputs/index.js',
         'helpers': './src/components/helpers/index.js',
+        'presets/bootstrap': './src/presets/bootstrap.js',
         'vue-forminator': './src/Forminator.js'
     },
     output: {

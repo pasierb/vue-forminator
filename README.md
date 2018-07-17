@@ -4,8 +4,6 @@
 
 Forminator is a "no magic", extensible, configurable, schema-based form fields factory.
 
-## Usage
-
 ```javascript
 import Vue from 'vue';
 import Forminator from 'vue-forminator';
@@ -32,6 +30,14 @@ new Vue({
         ])
     },
 }).$mount('#app')
+```
+
+# Integrations
+
+## Bootstrap (v4.1)
+
+```javascript
+import Forminator from 'vue-forminator/lib/presets/bootstrap';
 ```
 
 # Schema definition
@@ -192,5 +198,5 @@ npm run test
 # TODO
 
 - [ ] bulma.io config example
-- [ ] bootstrap config example
+- [x] bootstrap config example
 - [ ] docs
