@@ -10,7 +10,11 @@ export default function InputType(type) {
 
             return h('input', mergeData(data, {
                 class: attrs.class || config[`${type}InputClass`] || config.inputClass,
-                attrs: Object.assign({}, attrs || {}, { type, name: field.name }),
+                attrs: Object.assign({}, attrs, {
+                    type,
+                    name: field.name,
+                    value: model[field.name]
+                }),
                 on: {
                     keyUp: onChange,
                     input: onChange,

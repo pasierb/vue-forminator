@@ -5,13 +5,14 @@ import { CheckboxGroup, RadioGroup, LabelBefore, Field, Fieldset } from './compo
 import Row from './components/Row';
 import Column from './components/Column';
 
-function defaultFields({ Text, Checkbox, Select, Textarea, Email, Radio }) {
+function defaultFields({ Text, Checkbox, Select, Textarea, Email, Radio, NumberInput }) {
     return {
         'text': LabelBefore(Text),
         'boolean': LabelBefore(Checkbox),
         'select': LabelBefore(Select),
         'textarea': LabelBefore(Textarea),
         'email': LabelBefore(Email),
+        'number': LabelBefore(NumberInput),
         'checkbox': LabelBefore(Checkbox),
         'radio': LabelBefore(Radio),
         'radioGroup': LabelBefore(RadioGroup(LabelBefore(Radio))),
