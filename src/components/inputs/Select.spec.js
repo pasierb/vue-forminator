@@ -69,6 +69,6 @@ describe('Select', () => {
             }
         });
 
-        expect(wrapper.contains('select.foo-class.bar-class')).toBe(true);
+        expect(wrapper.contains('select:not(.foo-class).bar-class')).toBe(true);
     });
 });

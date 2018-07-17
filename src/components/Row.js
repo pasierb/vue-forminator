@@ -9,10 +9,7 @@ export default {
         const attrs  = field.attrs || {};
 
         return h('div', {
-            class: [
-                config.rowClass,
-                attrs.class || ''
-            ]
+            class: attrs.class || config.rowClass
         }, slots().default);
     }
 }

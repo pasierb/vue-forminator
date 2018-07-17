@@ -19,10 +19,7 @@ const Checkbox = {
         }
 
         return h('input', mergeData(data, {
-            class: [
-                config.checkboxClass,
-                attrs.class || ''
-            ],
+            class: attrs.class || config.checkboxClass,
             attrs: Object.assign({}, field.attrs || {}, {
                 type: 'checkbox',
                 name: field.name,

@@ -40,7 +40,7 @@ describe('Radio', () => {
         expect(model.accept).toEqual('yes');
     });
 
-    it('should add css class from attrs', () => {
+    it('should set css class from attrs', () => {
         field.attrs = {
             class: 'bar-class'
         };

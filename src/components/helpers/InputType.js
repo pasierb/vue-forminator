@@ -5,15 +5,11 @@ export default function InputType(type) {
         functional: true,
         render(h, { props, data }) {
             const { model, field, config } = props;
-            const cssClass = config[`${type}InputClass`] || config.inputClass;
             const onChange = props.setter || ((e) => model[field.name] = e.target.value);
             const attrs = field.attrs || {};
 
             return h('input', mergeData(data, {
-                class: [
-                    cssClass,
-                    attrs.class || '',
-                ],
+                class: attrs.class || config[`${type}InputClass`] || config.inputClass,
                 attrs: Object.assign({}, attrs || {}, { type, name: field.name }),
                 on: {
                     keyUp: onChange,

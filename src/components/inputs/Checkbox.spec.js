@@ -63,6 +63,6 @@ describe('Checkbox', () => {
             }
         });
 
-        expect(wrapper.contains('input.foo-class.custom-class')).toBe(true);
+        expect(wrapper.contains('input:not(.foo-class).custom-class')).toBe(true);
     });
 });

@@ -24,7 +24,8 @@ const defaultConfig = {};
 
 const defaultProps = {
     model: { type: Object, required: true },
-    schema: { type: Array, required: true }
+    schema: { type: Array, required: true },
+    config: { type: Object, default: () => ({}) }
 };
 
 /**
@@ -45,7 +46,7 @@ export default function Factory(options = {}) {
         props: customProps = {},
         fallbackField = 'text'
     } = options;
-    const config = Object.assign({}, defaultConfig, customConfig);
+    const globalConfig = Object.assign({}, defaultConfig, customConfig);
     const inputs = Object.assign({}, defaultInputs, customInputs);
     const fields = Object.assign(
         {},
@@ -57,6 +58,11 @@ export default function Factory(options = {}) {
         if (!item) return null;
 
         const { data, props } = context;
+        const { config: componentConfig = {}} = props;
+
+        // console.log({ props, defaultConfig, componentConfig });
+
+        const config = Object.assign({}, globalConfig, componentConfig);
 
         if (Array.isArray(item)) {
             return createElement(Row, { props: { config }}, item.map(subItem =>
@@ -87,7 +93,7 @@ export default function Factory(options = {}) {
         const Input = fields[item.as] || fields[fallbackField];
         if (Input) {
             return createElement(FieldWrapper(Input, item), mergeData(data, {
-                props: { config, ...props }
+                props: { ...props, config }
             }));
         }
     }

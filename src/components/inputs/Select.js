@@ -28,10 +28,7 @@ const Select = {
         const onChange = (e) => model[field.name] = e.target.value;
 
         return h('select', mergeData(data, {
-            class: [
-                config.selectClass,
-                attrs.class || ''
-            ],
+            class: attrs.class || config.selectClass,
             attrs: Object.assign({}, attrs || {}, { name: field.name }),
             on: {
                 change: onChange
