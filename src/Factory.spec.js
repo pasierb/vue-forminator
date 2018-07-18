@@ -135,4 +135,22 @@ describe('Factory', () => {
 
         expect(wrapper.contains('div.funny-row:not(.row) > div.col > div.funny-field:not(.field) > input[name="foo"]')).toBe(true);
     });
+
+    it('should add textLabelClass for default text field', () => {
+        const wrapper = mount(Forminator, {
+            context: {
+                props: {
+                    model,
+                    schema: [
+                        { name: 'first' }
+                    ],
+                    config: {
+                        textLabelClass: 'text-field-label'
+                    }
+                }
+            }
+        });
+
+        expect(wrapper.contains('label.text-field-label > input[type="text"][name="first"]'));
+    });
 });
