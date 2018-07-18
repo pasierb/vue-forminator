@@ -1,21 +1,17 @@
-import { mergeData } from 'vue-functional-data-merge';
-
 export default {
     functional: true,
+    props: {
+        field: Object,
+        config: { type: Object, required: true }
+    },
     render(h, { props, slots, data }) {
         const { field, config } = props;
-        const prependRequired = field.as === 'boolean';
-        const className = ({
-            checkbox: config.checkboxLabelClass,
-            boolean: config.checkboxLabelClass
-        })[props.as];
+        const className = (field && config[`${field.as}LabelClass`]) || config.labelClass
 
-        return h('label', mergeData(data, {
-            class: [className, config.labelClass],
-        }), [
-            field.required && prependRequired && '* ',
+        return h('label', {
+            class: className,
+        }, [
             slots().default,
-            field.required && !prependRequired && ' *',
         ]);
     }
 }

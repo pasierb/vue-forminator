@@ -32,6 +32,12 @@ new Vue({
 }).$mount('#app')
 ```
 
+# Why you (may) need it?
+
+- does your project involve many forms?
+- is your form markup complicated?
+- are you seeing a lot of duplicated code in your form components?
+
 # Integrations
 
 ## Bootstrap (v4.1)
