@@ -219,6 +219,12 @@ const Forminator = Factory({
 })
 ```
 
+# FAQ
+
+__Q__: What if i want to conditionaly show field
+
+__A__: You can pass "falsy" value as a field definition
+
 # Testing
 
 ```bash
