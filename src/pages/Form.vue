@@ -13,9 +13,6 @@
 </template>
 
 <script>
-import BootstrapForminator from '../presets/bootstrap';
-import Forminator from '../Forminator';
-
 export default {
     name: 'formPage',
     props: {
@@ -37,28 +34,9 @@ export default {
             }
         };
     },
-    components: {
-        Forminator,
-        BootstrapForminator
-    },
     computed: {
-        forminatorFactory() {
-            return ({
-                'bootstrap': BootstrapForminator,
-                'blank': Forminator
-            })[this.form.factory];
-        },
         formSchema() {
             return [
-                // {
-                //     as: 'select',
-                //     label: 'Forminator Factory',
-                //     name: 'factory',
-                //     options: [
-                //         { label: 'Bootstrap (v4.1)', value: 'bootstrap' },
-                //         { label: 'Blank', value: 'blank' },
-                //     ]
-                // },
                 { name: 'email', label: 'Email address', as: 'email' },
                 this.form.email && { name: 'phone', label: 'Phone number' },
                 { name: 'birthDate', label: 'Birthday', as: 'date' },
@@ -73,7 +51,7 @@ export default {
                     ]
                 },
                 { name: 'comments', label: 'Questions and comments', as: 'textarea' },
-                { name: 'acceptedTerms', as: 'boolean', label: `Yes, I (or my legal guardian) have <strong>read and understood</strong> how EF processes my personal data as set out in the Privacy Policy, and agree to EF's use of my personal data for direct marketing purposes.` },
+                { name: 'acceptedTerms', as: 'boolean', label: 'I read terms and conditions' },
                 {
                     name: 'radio',
                     as: 'radioGroup',

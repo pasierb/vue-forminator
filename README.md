@@ -206,3 +206,5 @@ npm run test
 - [ ] bulma.io config example
 - [x] bootstrap config example
 - [ ] docs
+- [ ] [imaskjs](https://github.com/uNmAnNeR/imaskjs) sample
+- [ ] [vuelidate](https://github.com/monterail/vuelidate) sample

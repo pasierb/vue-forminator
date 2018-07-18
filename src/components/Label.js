@@ -4,9 +4,9 @@ export default {
         field: Object,
         config: { type: Object, required: true }
     },
-    render(h, { props, slots, data }) {
+    render(h, { props, slots }) {
         const { field, config } = props;
-        const className = (field && config[`${field.as}LabelClass`]) || config.labelClass
+        const className = (field && config[`${field.as}LabelClass`]) || config.labelClass;
 
         return h('label', {
             class: className,

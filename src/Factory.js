@@ -97,8 +97,8 @@ export default function Factory(options = {}) {
 
         const Input = fields[item.as] || fields[fallbackField];
         if (Input) {
-            return createElement(FieldWrapper(Input, item), mergeData(data, {
-                props: { ...props, config }
+            return createElement(FieldWrapper(Input), mergeData(data, {
+                props: { ...props, config, field: item }
             }));
         }
     }
