@@ -78,8 +78,8 @@ export default function Factory(options = {}) {
         }
 
         if (item.as === 'fieldset') {
-            return createElement(Fieldset(createField, item), mergeData(data, {
-                props: { ...props, config }
+            return createElement(Fieldset(createField), mergeData(data, {
+                props: { ...props, config, field: item }
             }));
         }
 

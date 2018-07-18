@@ -162,6 +162,23 @@ import Forminator from 'vue-forminator/lib/presets/bootstrap';
 }
 ```
 
+## Fieldset
+
+```javascript
+{
+    as: 'fieldset',
+    label: '',
+    legendAttrs: {
+        // html attributes passed to column legend element, for example:
+        class: 'some-custom-legend-class'
+    },
+    fields: [
+        // any field definition
+        ... 
+    ]
+}
+```
+
 # Customization
 
 ```javascript

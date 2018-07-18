@@ -1,6 +1,6 @@
 {
   "name": "vue-forminator",
-  "version": "0.2.2",
+  "version": "1.0.0-beta.2",
   "private": false,
   "description": "Vue.js schema based form generator",
   "main": "./lib/vue-forminator.js",
@@ -8,6 +8,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/pasierb/vue-forminator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pasierb/vue-forminator/issues"
   },
   "keywords": [
     "vue",
@@ -25,15 +28,17 @@
     "build": "webpack",
     "build:docs": "vue-cli-service build --mode staging",
     "lint": "vue-cli-service lint",
-    "precommit": "vue-cli-service lint && jest --coverage",
+    "precommit": "npm run test",
+    "prepublish": "npm run test && npm run build",
     "test": "npm run lint lint && jest"
   },
   "files": [
-    "dist/*",
-    "lib/*",
-    "src/*",
+    "lib/**/*",
+    "src/**/*",
     "*.json",
-    "*.js"
+    "*.js",
+    "README.md",
+    "LICENSE"
   ],
   "peerDependencies": {
     "vue": ">= 2.3 < 3"
