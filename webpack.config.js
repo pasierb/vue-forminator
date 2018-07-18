@@ -7,6 +7,7 @@ module.exports = {
         'inputs': './src/components/inputs/index.js',
         'helpers': './src/components/helpers/index.js',
         'presets/bootstrap': './src/presets/bootstrap.js',
+        'presets/bulma': './src/presets/bulma.js',
         'vue-forminator': './src/Forminator.js'
     },
     output: {
