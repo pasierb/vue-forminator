@@ -166,6 +166,7 @@ import Forminator from 'vue-forminator/lib/presets/bootstrap';
 
 ```javascript
 import { Factory } from 'vue-forminator'
+import { LabelWrap, LabelBefore } from 'vue-forminator/lib/helpers'
 
 const Forminator = Factory({
     config: {
@@ -180,6 +181,7 @@ const Forminator = Factory({
         columnClass: 'col',
         fieldsetClass: 'form-fieldset',
         fieldsetLegendClass: 'form-fieldset',
+        requiredLabelClass: 'css to be applied to field which attrs.required is truthy'
     },
     Field, // Field component provider function
     inputs: {
@@ -190,7 +192,7 @@ const Forminator = Factory({
     },
     fields: function({ ..inputs }) {
         return {
-            'text': LabelPrepend(Text),
+            'text': LabelBefore(Text),
             'boolean': LabelWrap(Checkbox)
         };
     }
