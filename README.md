@@ -239,3 +239,4 @@ npm run test
 - [ ] [imaskjs](https://github.com/uNmAnNeR/imaskjs) sample
 - [ ] [vuelidate](https://github.com/monterail/vuelidate) sample
 - [ ] schema validation in dev environment
+- [ ] create [codesandbox.io](https://codesandbox.io) examples
