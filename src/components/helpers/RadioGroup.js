@@ -6,10 +6,16 @@ export default function RadioGroup(Radio) {
         render(h, { data, props }) {
             const { field, model, config } = props;
 
-            return h('div', {}, field.options.map(option =>
+            return h('div', {
+                class: config.radioGroupClass
+            }, field.options.map(option =>
                 h(Radio, mergeData(data, {
                     props: {
-                        field: { name: field.name, ...option },
+                        field: {
+                            ...option,
+                            name: field.name, 
+                            as: 'radio'
+                        },
                         model,
                         config
                     }
