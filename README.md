@@ -229,6 +229,7 @@ npm run test
 
 - [x] bulma.io config example
 - [x] bootstrap config example
-- [ ] docs
+- [x] docs
 - [ ] [imaskjs](https://github.com/uNmAnNeR/imaskjs) sample
 - [ ] [vuelidate](https://github.com/monterail/vuelidate) sample
+- [ ] schema validation in dev environment
