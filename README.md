@@ -34,9 +34,11 @@ new Vue({
 
 # Why you (may) need it?
 
-- does your project involve many forms?
-- is your form markup complicated?
-- are you seeing a lot of duplicated code in your form components?
+- your project involves many forms
+- your form markup is complicated
+- you are seeing a lot of duplicated code in your form components
+- your forms look inconsistent
+- maintainance takes to much time
 
 # Integrations
 
