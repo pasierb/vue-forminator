@@ -32,6 +32,14 @@ new Vue({
 }).$mount('#app')
 ```
 
+# Why you (may) need it?
+
+- your project involves many forms
+- your form markup is complicated
+- you are seeing a lot of duplicated code in your form components
+- your forms look inconsistent
+- maintainance takes to much time
+
 # Integrations
 
 ## Bootstrap (v4.1)
@@ -158,6 +166,7 @@ import Forminator from 'vue-forminator/lib/presets/bootstrap';
 
 ```javascript
 import { Factory } from 'vue-forminator'
+import { LabelWrap, LabelBefore } from 'vue-forminator/lib/helpers'
 
 const Forminator = Factory({
     config: {
@@ -172,6 +181,7 @@ const Forminator = Factory({
         columnClass: 'col',
         fieldsetClass: 'form-fieldset',
         fieldsetLegendClass: 'form-fieldset',
+        requiredLabelClass: 'css to be applied to field which attrs.required is truthy'
     },
     Field, // Field component provider function
     inputs: {
@@ -182,7 +192,7 @@ const Forminator = Factory({
     },
     fields: function({ ..inputs }) {
         return {
-            'text': LabelPrepend(Text),
+            'text': LabelBefore(Text),
             'boolean': LabelWrap(Checkbox)
         };
     }
@@ -200,3 +210,5 @@ npm run test
 - [ ] bulma.io config example
 - [x] bootstrap config example
 - [ ] docs
+- [ ] [imaskjs](https://github.com/uNmAnNeR/imaskjs) sample
+- [ ] [vuelidate](https://github.com/monterail/vuelidate) sample

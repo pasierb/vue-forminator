@@ -23,6 +23,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "webpack",
+    "build:docs": "vue-cli-service build --mode staging",
     "lint": "vue-cli-service lint",
     "precommit": "vue-cli-service lint && jest --coverage",
     "test": "npm run lint lint && jest"

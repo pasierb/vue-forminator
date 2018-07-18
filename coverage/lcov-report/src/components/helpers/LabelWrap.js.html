@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for src/components/helpers/LabelBefore.js</title>
+    <title>Code coverage report for src/components/helpers/LabelWrap.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -16,18 +16,18 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../../index.html">All files</a> / <a href="index.html">src/components/helpers</a> LabelBefore.js
+      <a href="../../../index.html">All files</a> / <a href="index.html">src/components/helpers</a> LabelWrap.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">25% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>1/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>0/3</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,16 +35,16 @@
         <span class='fraction'>1/1</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">25% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>1/4</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line high'></div>
+  <div class='status-line low'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -59,33 +59,39 @@
 <a name='L11'></a><a href='#L11'>11</a>
 <a name='L12'></a><a href='#L12'>12</a>
 <a name='L13'></a><a href='#L13'>13</a>
-<a name='L14'></a><a href='#L14'>14</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">36x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import Label from '../Label';
-&nbsp;
-export default function LabelBefore(component) {
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export default function LabelWrap(Component) {
     return {
         functional: true,
-        render(h, { data, props }) {
-            return [
-                props.field.label &amp;&amp; h(Label, data, props.field.label),
-                h(component, data)
-            ];
+        render(h, { props, data }) {
+            const { field, config } = <span class="cstat-no" title="statement not covered" >props;</span>
+            const { attrs = <span class="branch-0 cbranch-no" title="branch not covered" >{}}</span> = <span class="cstat-no" title="statement not covered" >field;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return h('label', {</span>
+                class: attrs.class || config.labelClass
+            }, [
+                h(Component, data),
+                field.label
+            ])
         }
     }
-}
-&nbsp;</pre></td></tr>
+}</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->

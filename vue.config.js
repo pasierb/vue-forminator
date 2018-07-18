@@ -1,12 +1,9 @@
 module.exports = {
+    outputDir: 'docs',
     pages: {
         index: {
-            entry: 'src/pages/main.js',
+            entry: 'src/pages/index.js',
             template: 'public/index.html'
-        },
-        ef: {
-            entry: 'src/pages/ef.js',
-            template: 'public/ef.html'
         },
     }
 }
