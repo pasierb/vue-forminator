@@ -42,10 +42,13 @@ new Vue({
 
 # Integrations
 
-## Bootstrap (v4.1)
 
 ```javascript
-import Forminator from 'vue-forminator/lib/presets/bootstrap';
+// Bootstrap (v4.1)
+import BootstrapForminator from 'vue-forminator/lib/presets/bootstrap';
+
+// Bulma
+import BulmaForminator from 'vue-forminator/lib/presets/bulma';
 ```
 
 # Schema definition
@@ -224,7 +227,7 @@ npm run test
 
 # TODO
 
-- [ ] bulma.io config example
+- [x] bulma.io config example
 - [x] bootstrap config example
 - [ ] docs
 - [ ] [imaskjs](https://github.com/uNmAnNeR/imaskjs) sample
