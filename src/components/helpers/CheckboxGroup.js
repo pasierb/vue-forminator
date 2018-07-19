@@ -4,7 +4,8 @@ function CheckboxGroup(Checkbox) {
     return {
         functional: true,
         props: {
-            field: { type: Object, required: true }
+            field: { type: Object, required: true },
+            config: { type: Object, required: true }
         },
         render: (h, { props, data }) => {
             const { field } = props;
@@ -12,7 +13,10 @@ function CheckboxGroup(Checkbox) {
             return h('div', {}, field.options.map(option => {
                 return h(Checkbox, mergeData(data, {
                     props: {
-                        field: Object.assign({}, option, { name: field.name })
+                        field: Object.assign({}, option, {
+                            name: field.name,
+                            as: 'checkbox'
+                        }),
                     }
                 }));
             }));

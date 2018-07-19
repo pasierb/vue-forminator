@@ -1,15 +1,5 @@
 <template>
-<div id="app">
-    <div class="row">
-        <div class="col col-lg-6">
-            <component :is="factory" :schema="formSchema" :model="form" />
-        </div>
-        <div class="col col-lg-6">
-            <pre>{{formSchema}}</pre>
-        </div>
-    </div>
-
-</div>
+    <component :is="factory" :schema="formSchema" :model="form" />
 </template>
 
 <script>

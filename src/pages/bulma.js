@@ -1,8 +1,9 @@
 import Vue from 'vue'
-import Form from './Form.vue'
+import Bulma from './Bulma.vue'
 
 Vue.config.productionTip = false
 
 new Vue({
-  render: h => h(Form)
+  render: h => h(Bulma)
 }).$mount('#app')
+

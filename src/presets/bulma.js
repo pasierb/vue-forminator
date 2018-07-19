@@ -23,6 +23,8 @@ export default Factory({
         radioLabelClass: 'radio',
         radioClass: ' ',
         radioGroupClass: 'control',
+        fieldsetClass: 'box',
+        fieldsetLegendClass: 'label has-text-center',
         rowClass: 'columns',
         columnClass: 'column',
     },

@@ -39,6 +39,46 @@ describe('Checkbox', () => {
         expect(model.accept).toBe(true);
     });
 
+    it('should set array model', () => {
+        const model = {
+            sports: []
+        };
+        const field = { name: 'sports', value: 'bball' }
+
+        const wrapper = shallowMount(Checkbox, {
+            context: {
+                props: {
+                    model,
+                    config,
+                    field
+                }
+            }
+        });
+
+        wrapper.find('input').trigger('click');
+        expect(model.sports).toEqual(['bball']);
+    });
+
+    it('should unset array model', () => {
+        const model = {
+            sports: ['bball']
+        };
+        const field = { name: 'sports', value: 'bball' }
+
+        const wrapper = shallowMount(Checkbox, {
+            context: {
+                props: {
+                    model,
+                    config,
+                    field
+                }
+            }
+        });
+
+        wrapper.find('input').trigger('click');
+        expect(model.sports).toEqual([]);
+    });
+
     it('should set css class', () => {
         config.checkboxClass = 'foo-class';
 

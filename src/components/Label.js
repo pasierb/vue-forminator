@@ -14,8 +14,6 @@ export default {
                 className,
                 attrs.required && config.requiredLabelClass
             ]
-        }, [
-            slots().default,
-        ]);
+        }, [slots().default]);
     }
 }
