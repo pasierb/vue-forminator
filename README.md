@@ -129,6 +129,8 @@ import BulmaForminator from 'vue-forminator/lib/presets/bulma';
 
 `row` field type can be used to render fields inline. It generates `div` element with `config.rowClass` css class followed by set of `div`s (columns) with `config.columnClass` css class.
 
+[![Edit vue-forminator: rows & columns](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/rq894wrrm)
+
 ```javascript
 // short version, filled with default values
 [
